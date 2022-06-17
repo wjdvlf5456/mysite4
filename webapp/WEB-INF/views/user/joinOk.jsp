@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 <link href="/mysite4/assets/css/mysite.css" rel="stylesheet" type="text/css">
 <link href="/mysite4/assets/css/user.css" rel="stylesheet" type="text/css">
+
 </head>
 
 <body>
@@ -16,12 +17,13 @@
 		<c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
 		<!-- //header -->
 
+
 		<div id="nav">
 			<ul class="clearfix">
 				<li><a href="">입사지원서</a></li>
-					<li><a href="/mysite4/board/list">게시판</a></li>
+				<li><a href="">게시판</a></li>
 				<li><a href="">갤러리</a></li>
-				<li><a href="/mysite4/gbc/addList">방명록</a></li>
+				<li><a href="">방명록</a></li>
 			</ul>
 		</div>
 		<!-- //nav -->
@@ -31,8 +33,8 @@
 				<h2>회원</h2>
 				<ul>
 					<li>회원정보</li>
-					<li><a href="/mysite4/user/loginForm">로그인</a></li>
-					<li><a href="/mysite4/user/joinForm">회원가입</a></li>
+					<li>로그인</li>
+					<li>회원가입</li>
 				</ul>
 			</div>
 			<!-- //aside -->
@@ -40,12 +42,12 @@
 			<div id="content">
 
 				<div id="content-head">
-					<h3>로그인</h3>
+					<h3>회원가입</h3>
 					<div id="location">
 						<ul>
 							<li>홈</li>
 							<li>회원</li>
-							<li class="last">로그인</li>
+							<li class="last">회원가입</li>
 						</ul>
 					</div>
 					<div class="clear"></div>
@@ -53,33 +55,21 @@
 				<!-- //content-head -->
 
 				<div id="user">
-					<div id="loginForm">
-						<form action="/mysite4/user/login" method="post">
-							<!-- 아이디 -->
-							<div class="form-group">
-								<label class="form-text" for="input-uid">아이디</label> <input type="text" id="input-uid" name="id" value="" placeholder="아이디를 입력하세요">
-							</div>
+					<div id="joinOK">
 
-							<!-- 비밀번호 -->
-							<div class="form-group">
-								<label class="form-text" for="input-pass">비밀번호</label> <input type="password" id="input-pass" name="password" value="" placeholder="비밀번호를 입력하세요">
-							</div>
+						<p class="text-large bold">
+							회원가입을 축하합니다.<br> <br> <a href="">[로그인하기]</a>
+						</p>
 
-
-							<!-- 버튼영역 -->
-							<div class="button-area">
-								<button type="submit" id="btn-submit">로그인</button>
-							</div>
-
-						</form>
 					</div>
-					<!-- //loginForm -->
+					<!-- //joinOK -->
 				</div>
 				<!-- //user -->
 			</div>
 			<!-- //content  -->
-
 		</div>
+		<!-- //container  -->
+
 		<!-- footer -->
 		<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
 		<!-- //footer -->
