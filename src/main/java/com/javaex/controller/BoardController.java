@@ -84,21 +84,23 @@ public class BoardController {
 	@RequestMapping(value="/modifyForm/{no}", method= {RequestMethod.GET,RequestMethod.POST})
 	public String modifyForm(@PathVariable("no") int no, Model model) {
 		System.out.println("BoardController > modifyForm");
-		
+		System.out.println(no);
 		BoardVo boardVo = boardService.getBoard(no);
 		model.addAttribute("boardVo", boardVo);
 		
-		//read.jsp로 포워딩
-		return "board/read";
+		//modifyForm.jsp로 포워딩
+		return "board/modifyForm";
 	}
 	
 	// =================================== 수정 ===================================
 	@RequestMapping(value="/modify", method= {RequestMethod.GET,RequestMethod.POST})
-	public String modify() {
+	public String modify(@ModelAttribute BoardVo boardVo) {
 		System.out.println("BoardController > modifyForm");
 		
-		//read.jsp로 포워딩
-		return "board/read";
+		boardService.boardUpdate(boardVo);
+		
+		//list.jsp로 리다이렉트
+		return "redirect:./list";
 	}
 	
 	

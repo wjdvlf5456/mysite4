@@ -88,7 +88,7 @@
 								</span>
 							</div>
 							
-							<a id="btn_modify" href="/mysite4/board/modifyForm/${boardVo.no} }">수정</a>
+							<a id="btn_modify" href="/mysite4/board/modifyForm/${boardVo.no}">수정</a>
 							<a id="btn_modify" href="/mysite4/board/list">목록</a>
 							
 						</form>

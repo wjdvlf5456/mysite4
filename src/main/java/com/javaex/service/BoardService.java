@@ -34,4 +34,9 @@ public class BoardService {
 	public int boardDelete(int no) {
 		return boardDao.boardDelete(no);
 	}
+	
+	public int boardUpdate(BoardVo boardVo) {
+		int count = boardDao.boardUpdate(boardVo);
+		return count;
+	}
 }

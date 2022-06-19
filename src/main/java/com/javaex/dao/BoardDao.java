@@ -50,4 +50,12 @@ public class BoardDao {
 		return count;
 	}
 
+	// =================================== Board 게시글 수정 ===================================
+	public int boardUpdate(BoardVo boardVo) {
+		int count = sqlSession.update("board.boardUpdate", boardVo);
+		System.out.println(count + " 건이 수정되었습니다. (BoardDao)");
+		
+		return count;
+	}
+	
 }

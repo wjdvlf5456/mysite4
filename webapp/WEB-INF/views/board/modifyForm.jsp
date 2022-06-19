@@ -56,7 +56,7 @@
 	
 				<div id="board">
 					<div id="modifyForm">
-						<form action="#" method="get">
+						<form action="/mysite4/board/modify" method="get">
 							<!-- 작성자 -->
 							<div class="form-group">
 								<span class="form-text">작성자</span>
@@ -88,7 +88,7 @@
 								<textarea id="txt-content" name="content">${boardVo.content }</textarea>
 							</div>
 							
-							<a id="btn_cancel" href="">취소</a>
+							<a id="btn_cancel" href="/mysite4/board/list">취소</a>
 							<button id="btn_modify" type="submit" >수정</button>
 							
 						</form>

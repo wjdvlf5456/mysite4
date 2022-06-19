@@ -32,6 +32,7 @@
 	<select id="getBoard" parameterType="int" resultMap="resultMapBoardVo">
 	<![CDATA[
 		select  s.name, 
+				b.no, 
 				b.hit, 
 			 	to_char(b.reg_date, 'yy-mm-dd hh:mi') regDate,  
 			  	b.title,  
@@ -46,7 +47,9 @@
 	<!-- 게시글 조회시 조회수 1증가 -->
 	<update id="getHit" parameterType="int">
 		<![CDATA[
-			update board set hit = hit+1 where no = #{no}
+			update board 
+			set hit = hit+1 
+			where no = #{no}
 		]]>
 	</update>
 
@@ -66,5 +69,15 @@
 			where no = #{no}
 		]]>
 	</delete>
+	
+	<!-- 수정 -->
+	<update id="boardUpdate" parameterType="BoardVo">
+		<![CDATA[
+			Update 	board 
+			set 	title = #{title}, 
+					content = #{content} 
+			where no = #{no}
+		]]>
+	</update>
 
 </mapper>
