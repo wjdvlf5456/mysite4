@@ -81,7 +81,7 @@
 									<td>${boardVo.name}</td>
 									<td>${boardVo.hit }</td>
 									<td>${boardVo.regDate }</td>
-									<td><a href="/mysite4/board/delete">[삭제]</a></td>
+									<td><a href="/mysite4/board/delete/${boardVo.no}">[삭제]</a></td>
 								</tr>
 							</tbody>
 							</c:forEach>

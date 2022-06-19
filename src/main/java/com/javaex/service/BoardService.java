@@ -19,7 +19,15 @@ public class BoardService {
 		return boardDao.getBoardList();
 	}
 	
+	public BoardVo getBoard(int no) {
+		return boardDao.getBoard(no);
+	}
+	
 	public int boardInsert(BoardVo boardVo) {
 		return boardDao.boardInsert(boardVo);
+	}
+	
+	public int boardDelete(int no) {
+		return boardDao.boardDelete(no);
 	}
 }

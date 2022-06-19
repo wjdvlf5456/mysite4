@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -55,9 +56,11 @@ public class BoardController {
 	}
 	
 	// =================================== 삭제 ===================================
-	@RequestMapping(value="/delete", method= {RequestMethod.GET,RequestMethod.POST})
-	public String delete() {
+	@RequestMapping(value="/delete/{no}", method= {RequestMethod.GET,RequestMethod.POST})
+	public String delete(@PathVariable("no") int no) {
 		System.out.println("BoardController > delete");
+		System.out.println(no);
+		int count = boardService.boardDelete(no);
 		
 		//list.jsp로 리다이렉트
 		return "redirect:/board/list";
