@@ -14,8 +14,12 @@ public class BoardService {
 	@Autowired
 	private BoardDao boardDao;
 	
+	// board 리스트
 	public List<BoardVo> getBoardList(){
 		return boardDao.getBoardList();
 	}
-
+	
+	public int boardInsert(BoardVo boardVo) {
+		return boardDao.boardInsert(boardVo);
+	}
 }

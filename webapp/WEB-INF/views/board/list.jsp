@@ -56,7 +56,7 @@
 
 				<div id="board">
 					<div id="list">
-						<form action="/mysite4/board/list" method="post">
+						<form action="" method="post">
 							<div class="form-group text-right">
 								<input type="text">
 								<button type="submit" id=btn_search>검색</button>
@@ -73,14 +73,14 @@
 									<th>관리</th>
 								</tr>
 							</thead>
-							<c:forEach items="boardList" var="boardVo">
+							<c:forEach items="${boardList}" var="boardVo">
 							<tbody>
 								<tr>
-									<td>123</td>
-									<td class="text-left"><a href="#">게시판 게시글입니다.</a></td>
-									<td>정우성</td>
-									<td>1232</td>
-									<td>2020-12-23</td>
+									<td>${boardVo.no }</td>
+									<td class="text-left"><a href="">${boardVo.title }</a></td>
+									<td></td>
+									<td>${boardVo.hit }</td>
+									<td>${boardVo.regDate }</td>
 									<td><a href="/mysite4/board/delete">[삭제]</a></td>
 								</tr>
 							</tbody>

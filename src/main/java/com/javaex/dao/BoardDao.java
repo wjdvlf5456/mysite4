@@ -20,6 +20,12 @@ public class BoardDao {
 		return boardList;
 	}
 	
+	public int boardInsert(BoardVo boardVo) {
+		int count =  sqlSession.insert("board.boardInsert",boardVo);
+		System.out.println(count + " 건이 등록되었습니다.");
+		return count;
+	}
+	
 	
 
 }

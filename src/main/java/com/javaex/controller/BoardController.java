@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -24,8 +25,9 @@ public class BoardController {
 		System.out.println("BoardController > list");
 		
 		List<BoardVo> boardList = boardService.getBoardList();
+		System.out.println(boardList.toString());
 		
-		model.addAttribute("boradList" , boardList);
+		model.addAttribute("boardList" , boardList);
 		
 		//list.jsp로 포워딩
 		return "board/list";
@@ -42,11 +44,14 @@ public class BoardController {
 	
 	// =================================== 글쓰기 ===================================
 	@RequestMapping(value="/write", method= {RequestMethod.GET,RequestMethod.POST})
-	public String write() {
+	public String write(@ModelAttribute BoardVo boardVo) {
 		System.out.println("BoardController > write");
+		System.out.println(boardVo.toString());
+		int count = boardService.boardInsert(boardVo);
+		System.out.println(count + " 컨트롤러");
 		
 		//list.jsp로 리다이렉트
-		return "redirect:/list";
+		return "redirect:/board/list";
 	}
 	
 	// =================================== 삭제 ===================================
@@ -55,7 +60,7 @@ public class BoardController {
 		System.out.println("BoardController > delete");
 		
 		//list.jsp로 리다이렉트
-		return "redirect:/list";
+		return "redirect:/board/list";
 	}
 	
 	// =================================== 읽기 페이지 ===================================
