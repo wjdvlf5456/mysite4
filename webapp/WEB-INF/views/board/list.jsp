@@ -77,7 +77,7 @@
 							<tbody>
 								<tr>
 									<td>${boardVo.no }</td>
-									<td class="text-left"><a href="">${boardVo.title }</a></td>
+									<td class="text-left"><a href="./read/${boardVo.no}">${boardVo.title }</a></td>
 									<td>${boardVo.name}</td>
 									<td>${boardVo.hit }</td>
 									<td>${boardVo.regDate }</td>
@@ -106,7 +106,7 @@
 
 							<div class="clear"></div>
 						</div>
-						<a id="btn_write" href="">글쓰기</a>
+						<a id="btn_write" href="/mysite/board/writeForm">글쓰기</a>
 
 					</div>
 					<!-- //list -->

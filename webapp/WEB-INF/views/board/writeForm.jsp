@@ -66,7 +66,7 @@
 							<div class="form-group">
 								<textarea id="txt-content" name="content"></textarea>
 							</div>
-							
+							<input type="text" name="userNo" value="2">
 							<a id="btn_cancel" href="./board/list">취소</a>
 							<button id="btn_add" type="submit" >등록</button>
 							

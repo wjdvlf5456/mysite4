@@ -27,6 +27,14 @@ public class BoardDao {
 		return sqlSession.selectOne("board.getBoard", no);
 	}
 
+	// =================================== Board 게시글 조회수 증가 ===================================
+	public int getHit(int no) {
+		int count = sqlSession.update("board.getHit", no);
+		System.out.println(no + " 번 게시판을 조회하였습니다. (BoardDao)");
+
+		return count;
+	}
+
 	// =================================== Board 게시글 등록 ===================================
 	public int boardInsert(BoardVo boardVo) {
 		int count = sqlSession.insert("board.boardInsert", boardVo);
@@ -38,6 +46,7 @@ public class BoardDao {
 	public int boardDelete(int no) {
 		int count = sqlSession.delete("board.boardDelete", no);
 		System.out.println(count + " 건이 삭제되었습니다. (BoardDao)");
+		
 		return count;
 	}
 

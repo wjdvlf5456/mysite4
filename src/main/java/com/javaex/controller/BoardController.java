@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.javaex.service.BoardService;
 import com.javaex.vo.BoardVo;
@@ -59,26 +60,33 @@ public class BoardController {
 	@RequestMapping(value="/delete/{no}", method= {RequestMethod.GET,RequestMethod.POST})
 	public String delete(@PathVariable("no") int no) {
 		System.out.println("BoardController > delete");
-		System.out.println(no);
-		int count = boardService.boardDelete(no);
+		boardService.boardDelete(no);
 		
 		//list.jsp로 리다이렉트
 		return "redirect:/board/list";
 	}
 	
 	// =================================== 읽기 페이지 ===================================
-	@RequestMapping(value="/read", method= {RequestMethod.GET,RequestMethod.POST})
-	public String read() {
+	@RequestMapping(value="/read/{no}", method= {RequestMethod.GET,RequestMethod.POST})
+	public String read(@PathVariable("no") int no, Model model) {
 		System.out.println("BoardController > read");
+		boardService.getHit(no);
+		
+		BoardVo boardVo = boardService.getBoard(no);
+		
+		model.addAttribute("boardVo", boardVo);
 		
 		//read.jsp로 포워딩
 		return "board/read";
 	}
 	
 	// =================================== 수정페이지 ===================================
-	@RequestMapping(value="/modifyForm", method= {RequestMethod.GET,RequestMethod.POST})
-	public String modifyForm() {
+	@RequestMapping(value="/modifyForm/{no}", method= {RequestMethod.GET,RequestMethod.POST})
+	public String modifyForm(@PathVariable("no") int no, Model model) {
 		System.out.println("BoardController > modifyForm");
+		
+		BoardVo boardVo = boardService.getBoard(no);
+		model.addAttribute("boardVo", boardVo);
 		
 		//read.jsp로 포워딩
 		return "board/read";

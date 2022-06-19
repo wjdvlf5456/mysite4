@@ -27,26 +27,35 @@
 		order by b.no desc
 	]]>
 	</select>
+	
+	<!-- 게시글 1개 정보 가져오기 -->
 	<select id="getBoard" parameterType="int" resultMap="resultMapBoardVo">
 	<![CDATA[
-		select s.name, 
-					  b.hit,";
-					  to_char(b.reg_date, 'yy-mm-dd hh:mi'), 
-					  b.title, 
-					  b.content, 
-					  b.user_no 
+		select  s.name, 
+				b.hit, 
+			 	to_char(b.reg_date, 'yy-mm-dd hh:mi') regDate,  
+			  	b.title,  
+			  	b.content,  
+			  	b.user_no  
 		from users s 
 		left outer join board b on b.user_no = s.no 
 		where b.no = #{no} 
 	]]>
 	</select>
+	
+	<!-- 게시글 조회시 조회수 1증가 -->
+	<update id="getHit" parameterType="int">
+		<![CDATA[
+			update board set hit = hit+1 where no = #{no}
+		]]>
+	</update>
 
 
 	<!-- 등록 -->
 	<insert id="boardInsert" parameterType="BoardVo">
 		<![CDATA[
 			insert into board(no,title,content,reg_date,user_no) 
-			values(seq_board_no.nextval, '신세계','안녕하세요',sysdate,1)
+			values(seq_board_no.nextval, #{title},#{content},sysdate,#{userNo})
 		]]>
 	</insert>
 

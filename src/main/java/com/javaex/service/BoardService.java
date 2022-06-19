@@ -23,6 +23,10 @@ public class BoardService {
 		return boardDao.getBoard(no);
 	}
 	
+	public int getHit(int no) {
+		return boardDao.getHit(no);
+	}
+	
 	public int boardInsert(BoardVo boardVo) {
 		return boardDao.boardInsert(boardVo);
 	}
