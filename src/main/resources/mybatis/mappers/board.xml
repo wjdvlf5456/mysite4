@@ -9,17 +9,19 @@
 		<result column="hit" property="hit" />
 		<result column="reg_date" property="regDate" />
 		<result column="user_no" property="userNo" />
+		<result column="name" property="name" />
 	</resultMap>
 	<select id="selectList" resultMap="resultMapBoardVo">
 	<![CDATA[
-		select 	no, 
-				title, 
-				content, 
-				hit, 
-				to_char(reg_date,'yy-mm-dd hh:mi') regDate, 
-				user_no 
-		from board 
-		order by no desc
+		select 	b.no, 
+				b.title, 
+				b.content, 
+				b.hit, 
+				to_char(b.reg_date,'yy-mm-dd hh:mi') regDate, 
+				s.name 
+		from users s 
+		left outer join board b on b.user_no = s.no  
+		order by b.no desc
 	]]>
 	</select>
 	<insert id="boardInsert" parameterType="BoardVo">

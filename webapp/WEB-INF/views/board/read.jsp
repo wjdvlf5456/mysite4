@@ -56,7 +56,7 @@
 	
 				<div id="board">
 					<div id="read">
-						<form action="#" method="get">
+						<form action="./board/read" method="get">
 							<!-- 작성자 -->
 							<div class="form-group">
 								<span class="form-text">작성자</span>
@@ -95,8 +95,8 @@
 								</span>
 							</div>
 							
-							<a id="btn_modify" href="">수정</a>
-							<a id="btn_modify" href="">목록</a>
+							<a id="btn_modify" href="./board/modifyForm">수정</a>
+							<a id="btn_modify" href="./board/list">목록</a>
 							
 						</form>
 						<!-- //form -->

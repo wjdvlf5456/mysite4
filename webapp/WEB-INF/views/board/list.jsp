@@ -78,7 +78,7 @@
 								<tr>
 									<td>${boardVo.no }</td>
 									<td class="text-left"><a href="">${boardVo.title }</a></td>
-									<td></td>
+									<td>${boardVo.name}</td>
 									<td>${boardVo.hit }</td>
 									<td>${boardVo.regDate }</td>
 									<td><a href="/mysite4/board/delete">[삭제]</a></td>
