@@ -6,19 +6,20 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.javaex.vo.UserVo;
+import com.javaex.vo.BoardVo;
 
 @Repository
-public class UserDao {
+public class BoardDao {
 	
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public List<UserVo> getUserList(){
-		System.out.println("UserDao > getUserList");
-		List<UserVo> userList = sqlSession.selectList("user.selectList");
+	public List<BoardVo> getBoardList(){
+		List<BoardVo> boardList = sqlSession.selectList("board.selectList");
 		
-		return userList;
+		return boardList;
 	}
+	
+	
 
 }

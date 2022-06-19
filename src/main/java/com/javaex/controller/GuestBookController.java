@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping(value="/gbc")
 public class GuestBookController {
 	
+	// =================================== 방명록 메인 ===================================
 	@RequestMapping(value="/addList", method= {RequestMethod.GET,RequestMethod.POST})
 	public String addList() {
 		System.out.println("GuestBookController > addList");
@@ -16,6 +17,7 @@ public class GuestBookController {
 		return "guestbook/addList";
 	}
 	
+	// =================================== 방명록에 글쓰기 ===================================
 	@RequestMapping(value="/add", method= {RequestMethod.GET,RequestMethod.POST})
 	public String add() {
 		System.out.println("GuestBookController > add");
@@ -24,6 +26,7 @@ public class GuestBookController {
 		return "redirect:addList";
 	}
 	
+	// =================================== 방명록 삭제페이지 ===================================
 	@RequestMapping(value="/deleteForm", method= {RequestMethod.GET,RequestMethod.POST})
 	public String deleteForm() {
 		System.out.println("GuestBookController > addList");
@@ -32,6 +35,7 @@ public class GuestBookController {
 		return "guestbook/deleteForm";
 	}
 	
+	// =================================== 방명록 삭제 ===================================
 	@RequestMapping(value="/delete", method= {RequestMethod.GET,RequestMethod.POST})
 	public String delete() {
 		System.out.println("GuestBookController > delete");

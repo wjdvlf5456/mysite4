@@ -4,6 +4,7 @@
 	<typeAliases>
 	</typeAliases>
 	<mappers>
+		<mapper resource="mybatis/mappers/board.xml" />
 		<mapper resource="mybatis/mappers/user.xml" />
 	</mappers>
 </configuration>
