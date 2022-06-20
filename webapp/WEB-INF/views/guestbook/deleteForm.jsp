@@ -18,16 +18,10 @@
 		<c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
 		<!-- //header -->
 
-		<div id="nav">
-			<ul class="clearfix">
-				<li><a href="">입사지원서</a></li>
-				<li><a href="">게시판</a></li>
-				<li><a href="">갤러리</a></li>
-				<li><a href="">방명록</a></li>
-			</ul>
-		</div>
+		<!-- nav -->
+		<c:import url="/WEB-INF/views/includes/nav.jsp"></c:import>
 		<!-- //nav -->
-
+		
 		<div id="container" class="clearfix">
 			<div id="aside">
 				<h2>방명록</h2>
@@ -39,7 +33,7 @@
 			<!-- //aside -->
 
 			<div id="content">
-			
+
 				<div id="content-head">
 					<h3>일반방명록</h3>
 					<div id="location">
@@ -52,7 +46,7 @@
 					<div class="clear"></div>
 				</div>
 				<!-- //content-head -->
-	
+
 				<div id="guestbook">
 					<form action="" method="">
 						<table id="guestDelete">
@@ -69,10 +63,9 @@
 								<td><a href="/guestbook2/gbc">[메인으로 돌아가기]</a></td>
 							</tr>
 						</table>
-						<input type='hidden' name="" value="">
-						<input type='hidden' name="" value="">
+						<input type='hidden' name="" value=""> <input type='hidden' name="" value="">
 					</form>
-					
+
 				</div>
 				<!-- //guestbook -->
 			</div>
@@ -80,7 +73,7 @@
 
 		</div>
 		<!-- //container  -->
-		
+
 		<!-- footer -->
 		<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
 		<!-- //footer -->
