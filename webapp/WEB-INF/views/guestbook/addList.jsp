@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>방명록</title>
 
 <link href="/mysite4/assets/css/mysite.css" rel="stylesheet" type="text/css">
 <link href="/mysite4/assets/css/guestbook.css" rel="stylesheet" type="text/css">
@@ -48,7 +48,7 @@
 				<!-- //content-head -->
 
 				<div id="guestbook">
-					<form action="" method="">
+					<form action="/mysite4/gbc/add" method="post">
 						<table id="guestAdd">
 							<colgroup>
 								<col style="width: 70px;">
@@ -58,10 +58,10 @@
 							</colgroup>
 							<tbody>
 								<tr>
-									<th><label class="form-text" for="input-uname">이름</label></td>
-									<td><input id="input-uname" type="text" name="name"></td>
-									<th><label class="form-text" for="input-pass">패스워드</label></td>
-									<td><input id="input-pass"type="password" name="pass"></td>
+									<th><label class="form-text" for="input-uname">이름</label></th>
+									<td><input id="input-uname" type="text" name="name" value=""></td>
+									<th><label class="form-text" for="input-pass">패스워드</label></th>
+									<td><input id="input-pass"type="password" name="password" value=""></td>
 								</tr>
 								<tr>
 									<td colspan="4"><textarea name="content" cols="72" rows="5"></textarea></td>
@@ -73,11 +73,10 @@
 							
 						</table>
 						<!-- //guestWrite -->
-						<input type="hidden" name="action" value="add">
 						
 					</form>	
-					
 					<table class="guestRead">
+					<c:forEach items="${guestList}" var="guestVo">
 						<colgroup>
 							<col style="width: 10%;">
 							<col style="width: 40%;">
@@ -85,35 +84,18 @@
 							<col style="width: 10%;">
 						</colgroup>
 						<tr>
-							<td>1234555</td>
-							<td>이정재</td>
-							<td>2020-03-03 12:12:12</td>
-							<td><a href="">[삭제]</a></td>
+							<td>${guestVo.no }</td>
+							<td>${guestVo.name }</td>
+							<td>${guestVo.regDate }</td>
+							<td><a href="/mysite4/gbc/deleteForm/${guestVo.no}">[삭제]</a></td>
 						</tr>
 						<tr>
-							<td colspan=4 class="text-left">방명록 글입니다. 방명록 글입니다.</td>
+							<td colspan=4 class="text-left">${guestVo.content }</td>
 						</tr>
+					</c:forEach>
 					</table>
 					<!-- //guestRead -->
 					
-					<table class="guestRead">
-						<colgroup>
-								<col style="width: 10%;">
-								<col style="width: 40%;">
-								<col style="width: 40%;">
-								<col style="width: 10%;">
-						</colgroup>
-						<tr>
-							<td>1234555</td>
-							<td>이정재</td>
-							<td>2020-03-03 12:12:12</td>
-							<td><a href="">[삭제]</a></td>
-						</tr>
-						<tr>
-							<td colspan=4 class="text-left">방명록 글입니다. 방명록 글입니다.</td>
-						</tr>
-					</table>	
-					<!-- //guestRead -->
 					
 				</div>
 				<!-- //guestbook -->

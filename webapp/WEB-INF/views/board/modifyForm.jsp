@@ -51,6 +51,7 @@
 				<div id="board">
 					<div id="modifyForm">
 						<form action="/mysite4/board/modify" method="get">
+						<input type="hidden" name="no" value="${boardVo.no }">
 							<!-- 작성자 -->
 							<div class="form-group">
 								<span class="form-text">작성자</span>

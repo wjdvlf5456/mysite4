@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원가입 성공</title>
 <link href="/mysite4/assets/css/mysite.css" rel="stylesheet" type="text/css">
 <link href="/mysite4/assets/css/user.css" rel="stylesheet" type="text/css">
 

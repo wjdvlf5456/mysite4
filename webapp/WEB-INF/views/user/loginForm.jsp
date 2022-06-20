@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>로그인</title>
 <link href="/mysite4/assets/css/mysite.css" rel="stylesheet" type="text/css">
 <link href="/mysite4/assets/css/user.css" rel="stylesheet" type="text/css">
 </head>

@@ -1,8 +1,11 @@
 package com.javaex.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.javaex.vo.UserVo;
 
 @Controller
 @RequestMapping(value = "/user")
@@ -46,7 +49,7 @@ public class UserController {
 
 	// =================================== 등록 ===================================
 	@RequestMapping(value = "/join", method = { RequestMethod.GET, RequestMethod.POST })
-	public String join() {
+	public String join(@ModelAttribute UserVo userVo) {
 		System.out.println("UserController > join");
 
 		// joinOk로 리다이렉

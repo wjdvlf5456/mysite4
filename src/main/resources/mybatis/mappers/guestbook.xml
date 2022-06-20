@@ -23,6 +23,20 @@
 		order by no desc
 	]]>
 	</select>
+	<!-- 목록 -->
+	<select id="getGuest" parameterType="int" resultMap="resultMapGuestBookVo">
+	<![CDATA[
+		select 	no, 
+				name, 
+				password, 
+				content, 
+				to_char(reg_date,'yy-mm-dd hh:mi') regDate  
+		from guestbook 
+		where no = #{no}
+	]]>
+	</select>
+	
+	
 
 	<!-- 등록 -->
 	<insert id="guestInsert" parameterType="GuestBookVo">

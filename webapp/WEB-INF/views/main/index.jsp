@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>홈페이지 메인</title>
 <link href="/mysite4/assets/css/mysite.css" rel="stylesheet" type="text/css">
 <link href="/mysite4/assets/css/main.css" rel="stylesheet" type="text/css">
 

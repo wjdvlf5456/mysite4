@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>방명록 삭제</title>
 <link href="/mysite4/assets/css/mysite.css" rel="stylesheet" type="text/css">
 <link href="/mysite4/assets/css/guestbook.css" rel="stylesheet" type="text/css">
 
@@ -21,7 +21,7 @@
 		<!-- nav -->
 		<c:import url="/WEB-INF/views/includes/nav.jsp"></c:import>
 		<!-- //nav -->
-		
+
 		<div id="container" class="clearfix">
 			<div id="aside">
 				<h2>방명록</h2>
@@ -48,7 +48,8 @@
 				<!-- //content-head -->
 
 				<div id="guestbook">
-					<form action="" method="">
+					<form action="/mysite4/gbc/delete" method="post">
+						<input type="hidden" name="no" value=${guestBookVo.no }>
 						<table id="guestDelete">
 							<colgroup>
 								<col style="width: 10%;">
@@ -58,12 +59,11 @@
 							</colgroup>
 							<tr>
 								<td>비밀번호</td>
-								<td><input type="password" name="pass"></td>
+								<td><input type="password" name="password"></td>
 								<td class="text-left"><button type="submit">삭제</button></td>
-								<td><a href="/guestbook2/gbc">[메인으로 돌아가기]</a></td>
+								<td><a href="/mysite4/gbc/addList">[메인으로 돌아가기]</a></td>
 							</tr>
 						</table>
-						<input type='hidden' name="" value=""> <input type='hidden' name="" value="">
 					</form>
 
 				</div>
