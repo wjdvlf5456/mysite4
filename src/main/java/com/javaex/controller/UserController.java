@@ -108,11 +108,16 @@ public class UserController {
 
 	// =================================== 정보수정 ===================================
 	@RequestMapping(value = "/modify", method = { RequestMethod.GET, RequestMethod.POST })
-	public String modify(@ModelAttribute UserVo userVo) {
+	public String modify(@ModelAttribute UserVo userVo, HttpSession session) {
 		System.out.println("UserController > modify");
 		
+		UserVo authUser = (UserVo)session.getAttribute("authUser");
 		//회원정보 수정
 		userService.userUpdate(userVo);
+		authUser = userService.getUser(userVo.getNo());
+		System.out.println(authUser.toString());
+		session.setAttribute("authUser", authUser);
+
 		
 		// 메인으로 리다이렉트
 		return "redirect:/main";
