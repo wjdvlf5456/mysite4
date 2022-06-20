@@ -1,7 +1,10 @@
 package com.javaex.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,9 +15,9 @@ import com.javaex.vo.UserVo;
 @Controller
 @RequestMapping(value = "/user")
 public class UserController {
-	
+
 	@Autowired
-	private UserService userService;
+	UserService userService;
 
 	// =================================== 로그인폼 ===================================
 	@RequestMapping(value = "/loginForm", method = { RequestMethod.GET, RequestMethod.POST })
@@ -27,17 +30,33 @@ public class UserController {
 
 	// =================================== 로그인 ===================================
 	@RequestMapping(value = "/login", method = { RequestMethod.GET, RequestMethod.POST })
-	public String login() {
+	public String login(@ModelAttribute UserVo userVo, HttpSession session) {
 		System.out.println("UserController > login");
 
-		// 메인페이지로 리다이렉트
-		return "redirect:/main";
+		UserVo authUser = userService.login(userVo);
+		System.out.println(authUser);
+		if (authUser == null) {	//로그인 실패
+			System.out.println(authUser);
+			return "redirect:/user/loginForm?result=fail";
+
+		} else {	//로그인 성공
+			System.out.println(authUser);
+			session.setAttribute("authUser", authUser);
+			
+			// 메인페이지로 리다이렉트
+			return "redirect:/main";
+
+		}
+
 	}
-	
+
 	// =================================== 로그아웃 ===================================
 	@RequestMapping(value = "/logout", method = { RequestMethod.GET, RequestMethod.POST })
-	public String logout() {
+	public String logout(HttpSession session) {
 		System.out.println("UserController > logout");
+		
+		session.removeAttribute("/logout");
+		session.invalidate();
 		
 		// 메인페이지로 리다이렉트
 		return "redirect:/main";
@@ -56,10 +75,10 @@ public class UserController {
 	@RequestMapping(value = "/join", method = { RequestMethod.GET, RequestMethod.POST })
 	public String join(@ModelAttribute UserVo userVo) {
 		System.out.println("UserController > join");
-		
+
 		System.out.println(userVo.toString());
 		userService.userInsert(userVo);
-		
+
 		// joinOk로 리다이렉트
 		return "redirect:/user/joinOk";
 	}
@@ -75,18 +94,26 @@ public class UserController {
 
 	// =================================== 정보수정폼 ===================================
 	@RequestMapping(value = "/modifyForm", method = { RequestMethod.GET, RequestMethod.POST })
-	public String modifyForm() {
+	public String modifyForm(HttpSession session, Model model) {
 		System.out.println("UserController > modifyForm");
-
+		
+		UserVo authUser = (UserVo) session.getAttribute("authUser");
+		UserVo userVo = userService.getUser(authUser.getNo());
+		
+		model.addAttribute("userVo",userVo);
+		
 		// modifyForm.jsp 포워딩
 		return "user/modifyForm";
 	}
 
 	// =================================== 정보수정 ===================================
 	@RequestMapping(value = "/modify", method = { RequestMethod.GET, RequestMethod.POST })
-	public String modify() {
+	public String modify(@ModelAttribute UserVo userVo) {
 		System.out.println("UserController > modify");
-
+		
+		//회원정보 수정
+		userService.userUpdate(userVo);
+		
 		// 메인으로 리다이렉트
 		return "redirect:/main";
 	}

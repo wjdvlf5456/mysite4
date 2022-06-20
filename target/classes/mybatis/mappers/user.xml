@@ -22,8 +22,18 @@
 		]]>
 	</select>
 	
-	<!-- 회원 1명 정보 불러오기 -->
-	<select id="getUser" parameterType="int" resultMap="resultMapUserVo">
+	<!-- 회원 1명 정보 로그인용 불러오기 -->
+	<select id="login" parameterType="UserVo" resultMap="resultMapUserVo">
+		<![CDATA[
+			select 	no, 
+					name 
+			from users 
+			where id = #{id} 
+			and password = #{password}
+		]]>
+	</select>
+	<!-- 회원들 정보 1명 불러오기 -->
+	<select id="getUser" resultMap="resultMapUserVo">
 		<![CDATA[
 			select 	no, 
 					id, 

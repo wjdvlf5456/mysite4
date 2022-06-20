@@ -20,7 +20,8 @@
 				b.content, 
 				b.hit, 
 				to_char(b.reg_date,'yy-mm-dd hh:mi') regDate, 
-				s.name 
+				s.name, 
+				b.user_no 
 		from users s 
 		left outer join board b on b.user_no = s.no 
 		where not b.no is null 

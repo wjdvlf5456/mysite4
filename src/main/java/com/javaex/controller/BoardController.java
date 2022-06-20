@@ -47,7 +47,6 @@ public class BoardController {
 	@RequestMapping(value="/write", method= {RequestMethod.GET,RequestMethod.POST})
 	public String write(@ModelAttribute BoardVo boardVo) {
 		System.out.println("BoardController > write");
-		System.out.println(boardVo.toString());
 		int count = boardService.boardInsert(boardVo);
 		System.out.println(count + " 컨트롤러");
 		

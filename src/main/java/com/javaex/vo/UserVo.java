@@ -26,6 +26,7 @@ public class UserVo {
 		this.password = password;
 		this.name = name;
 		this.gender = gender;
+		
 	}
 	
 	//메소드 - gs 

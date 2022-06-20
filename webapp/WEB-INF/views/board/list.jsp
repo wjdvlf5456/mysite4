@@ -75,7 +75,9 @@
 									<td>${boardVo.name}</td>
 									<td>${boardVo.hit }</td>
 									<td>${boardVo.regDate }</td>
+									<c:if test="${authUser.no==boardVo.userNo }">
 									<td><a href="/mysite4/board/delete/${boardVo.no}">[삭제]</a></td>
+									</c:if>
 								</tr>
 							</tbody>
 							</c:forEach>
@@ -100,7 +102,9 @@
 
 							<div class="clear"></div>
 						</div>
+						<c:if test="${authUser!=null }">
 						<a id="btn_write" href="/mysite4/board/writeForm">글쓰기</a>
+						</c:if>
 
 					</div>
 					<!-- //list -->
