@@ -19,7 +19,7 @@ import com.javaex.vo.GuestBookVo;
 public class GuestBookController {
 	
 	@Autowired
-	public GuestBookService guestBookService;
+	private GuestBookService guestBookService;
 	
 	// =================================== 방명록 메인 ===================================
 	@RequestMapping(value="/addList", method= {RequestMethod.GET,RequestMethod.POST})

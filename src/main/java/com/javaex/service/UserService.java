@@ -18,4 +18,13 @@ public class UserService {
 		return userDao.getUserList();
 	}
 	
+	public UserVo getUser(int no) {
+		return userDao.getUser(no);
+	}
+	
+	public int userInsert(UserVo userVo) {
+		int count = userDao.userInsert(userVo);
+		return count;
+	}
+	
 }
