@@ -59,7 +59,7 @@
 							<tbody>
 								<tr>
 									<th><label class="form-text" for="input-uname">이름</label></th>
-									<td><input id="input-uname" type="text" name="name" value=""></td>
+									<td><input id="input-uname" type="text" name="name" value="${authUser.name }"></td>
 									<th><label class="form-text" for="input-pass">패스워드</label></th>
 									<td><input id="input-pass"type="password" name="password" value=""></td>
 								</tr>
