@@ -6,8 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>${boardVo.no }번 게시판 글 읽기</title>
-<link href="/mysite4/assets/css/mysite.css" rel="stylesheet" type="text/css">
-<link href="/mysite4/assets/css/board.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/mysite.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/board.css" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -78,9 +78,9 @@
 								</span>
 							</div>
 							<c:if test="${authUser.no==boardVo.userNo }">
-							<a id="btn_modify" href="/mysite4/board/modifyForm/${boardVo.no}">수정</a>
+							<a id="btn_modify" href="${pageContext.request.contextPath}/board/modifyForm/${boardVo.no}">수정</a>
 							</c:if>
-							<a id="btn_modify" href="/mysite4/board/list">목록</a>
+							<a id="btn_modify" href="${pageContext.request.contextPath}/board/list">목록</a>
 							
 						</form>
 						<!-- //form -->

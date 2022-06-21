@@ -6,8 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>방명록 삭제</title>
-<link href="/mysite4/assets/css/mysite.css" rel="stylesheet" type="text/css">
-<link href="/mysite4/assets/css/guestbook.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/mysite.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/guestbook.css" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -44,7 +44,7 @@
 				<!-- //content-head -->
 
 				<div id="guestbook">
-					<form action="/mysite4/gbc/delete" method="post">
+					<form action="${pageContext.request.contextPath}/gbc/delete" method="post">
 						<input type="hidden" name="no" value=${guestBookVo.no }>
 						<table id="guestDelete">
 							<colgroup>
@@ -57,7 +57,7 @@
 								<td>비밀번호</td>
 								<td><input type="password" name="password"></td>
 								<td class="text-left"><button type="submit">삭제</button></td>
-								<td><a href="/mysite4/gbc/addList">[메인으로 돌아가기]</a></td>
+								<td><a href="${pageContext.request.contextPath}/gbc/addList">[메인으로 돌아가기]</a></td>
 							</tr>
 						</table>
 					</form>

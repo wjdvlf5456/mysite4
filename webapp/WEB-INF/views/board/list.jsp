@@ -6,8 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>게시판 목록</title>
-<link href="/mysite4/assets/css/mysite.css" rel="stylesheet" type="text/css">
-<link href="/mysite4/assets/css/board.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/mysite.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/board.css" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -67,12 +67,12 @@
 							<tbody>
 								<tr>
 									<td>${boardVo.no }</td>
-									<td class="text-left"><a href="./read/${boardVo.no}">${boardVo.title }</a></td>
+									<td class="text-left"><a href="${pageContext.request.contextPath}/board/read/${boardVo.no}">${boardVo.title }</a></td>
 									<td>${boardVo.name}</td>
 									<td>${boardVo.hit }</td>
 									<td>${boardVo.regDate }</td>
 									<c:if test="${authUser.no==boardVo.userNo }">
-									<td><a href="/mysite4/board/delete/${boardVo.no}">[삭제]</a></td>
+									<td><a href="${pageContext.request.contextPath}/board/delete/${boardVo.no}">[삭제]</a></td>
 									</c:if>
 								</tr>
 							</tbody>
@@ -99,7 +99,7 @@
 							<div class="clear"></div>
 						</div>
 						<c:if test="${authUser!=null }">
-						<a id="btn_write" href="/mysite4/board/writeForm">글쓰기</a>
+						<a id="btn_write" href="${pageContext.request.contextPath}/board/writeForm">글쓰기</a>
 						</c:if>
 
 					</div>

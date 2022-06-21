@@ -6,8 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>게시판 글 수정</title>
-<link href="/mysite4/assets/css/mysite.css" rel="stylesheet" type="text/css">
-<link href="/mysite4/assets/css/board.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/mysite.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/board.css" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -46,7 +46,7 @@
 	
 				<div id="board">
 					<div id="modifyForm">
-						<form action="/mysite4/board/modify" method="get">
+						<form action="${pageContext.request.contextPath}/board/modify" method="get">
 						<input type="hidden" name="no" value="${boardVo.no }">
 							<!-- 작성자 -->
 							<div class="form-group">
@@ -79,7 +79,7 @@
 								<textarea id="txt-content" name="content">${boardVo.content }</textarea>
 							</div>
 							
-							<a id="btn_cancel" href="/mysite4/board/list">취소</a>
+							<a id="btn_cancel" href="${pageContext.request.contextPath}/board/list">취소</a>
 							<button id="btn_modify" type="submit" >수정</button>
 							
 						</form>
