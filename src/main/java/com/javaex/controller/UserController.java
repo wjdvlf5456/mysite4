@@ -1,5 +1,7 @@
 package com.javaex.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.javaex.service.UserService;
 import com.javaex.vo.UserVo;
@@ -36,11 +39,9 @@ public class UserController {
 		UserVo authUser = userService.login(userVo);
 		System.out.println(authUser);
 		if (authUser == null) {	//로그인 실패
-			System.out.println(authUser);
 			return "redirect:/user/loginForm?result=fail";
 
 		} else {	//로그인 성공
-			System.out.println(authUser);
 			session.setAttribute("authUser", authUser);
 			
 			// 메인페이지로 리다이렉트
@@ -75,12 +76,13 @@ public class UserController {
 	@RequestMapping(value = "/join", method = { RequestMethod.GET, RequestMethod.POST })
 	public String join(@ModelAttribute UserVo userVo) {
 		System.out.println("UserController > join");
-
+		
 		System.out.println(userVo.toString());
 		userService.userInsert(userVo);
-
+		
 		// joinOk로 리다이렉트
 		return "redirect:/user/joinOk";
+
 	}
 
 	// =================================== 등록성공 ===================================
