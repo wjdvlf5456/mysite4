@@ -114,7 +114,7 @@ public class UserController {
 		UserVo authUser = (UserVo)session.getAttribute("authUser");
 		//회원정보 수정
 		userService.userUpdate(userVo);
-		authUser = userService.getUser(userVo.getNo());
+		authUser = userService.maintain(userVo.getNo());
 		System.out.println(authUser.toString());
 		session.setAttribute("authUser", authUser);
 

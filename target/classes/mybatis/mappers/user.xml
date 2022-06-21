@@ -32,6 +32,17 @@
 			and password = #{password}
 		]]>
 	</select>
+	
+	<!-- 세션유지용  -->
+	<select id="session" parameterType="int" resultMap="resultMapUserVo">
+		<![CDATA[
+			select 	no, 
+					name 
+			from users 
+			where no = #{no}
+		]]>
+	</select>
+	
 	<!-- 회원들 정보 1명 불러오기 -->
 	<select id="getUser" resultMap="resultMapUserVo">
 		<![CDATA[

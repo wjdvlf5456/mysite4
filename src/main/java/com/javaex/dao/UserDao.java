@@ -28,10 +28,16 @@ public class UserDao {
 		return authUser;
 	}
 	
+	public UserVo maintain(int no) {
+		UserVo authUser = sqlSession.selectOne("user.session",no);
+		return authUser;
+	}
+	
 	public UserVo getUser(int no) {
 		UserVo userVo = sqlSession.selectOne("user.getUser",no);
 		return userVo;
 	}
+	
 	
 	
 	public int userInsert(UserVo userVo) {
