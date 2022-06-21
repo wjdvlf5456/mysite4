@@ -22,11 +22,6 @@ public class UserService {
 		UserVo authUser = userDao.getUser(userVo);
 		return authUser;
 	}
-	
-	public UserVo maintain(int no) {
-		UserVo authUser = userDao.maintain(no);
-		return authUser;
-	}
 
 	public UserVo getUser(int no) {
 		UserVo userVo = userDao.getUser(no);

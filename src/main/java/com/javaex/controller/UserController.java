@@ -114,8 +114,12 @@ public class UserController {
 		UserVo authUser = (UserVo)session.getAttribute("authUser");
 		//회원정보 수정
 		userService.userUpdate(userVo);
-		authUser = userService.maintain(userVo.getNo());
+		
+		//authUser name 값만 바꿔주기
+		authUser.setName(userService.getUser(authUser.getNo()).getName());
 		System.out.println(authUser.toString());
+		
+		
 		session.setAttribute("authUser", authUser);
 
 		
