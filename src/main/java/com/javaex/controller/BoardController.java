@@ -23,7 +23,7 @@ public class BoardController {
 	
 	// =================================== 게시판(메인) ===================================
 	@RequestMapping(value="/list", method= {RequestMethod.GET,RequestMethod.POST})
-	public String list(Model model, @RequestParam("keyword") String keyword) {
+	public String list(Model model, @RequestParam(required = false) String keyword) {
 		System.out.println("BoardController > list");
 		
 		System.out.println("BoardController"+keyword);

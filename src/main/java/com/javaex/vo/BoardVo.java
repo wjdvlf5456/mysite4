@@ -10,7 +10,6 @@ public class BoardVo {
 	private String regDate;
 	private int userNo;
 	private String name;
-	private String keyword;
 
 	// 생성자
 	public BoardVo() {
@@ -25,7 +24,7 @@ public class BoardVo {
 		this.userNo = userNo;
 	}
 
-	public BoardVo(int no, String title, String content, int hit, String regDate, int userNo, String name, String keyword) {
+	public BoardVo(int no, String title, String content, int hit, String regDate, int userNo, String name) {
 		this.no = no;
 		this.title = title;
 		this.content = content;
@@ -33,7 +32,6 @@ public class BoardVo {
 		this.regDate = regDate;
 		this.userNo = userNo;
 		this.name = name;
-		this.keyword = keyword;
 	}
 
 	// 메소드 - gs
@@ -93,19 +91,11 @@ public class BoardVo {
 		this.name = name;
 	}
 
-	public String getKeyword() {
-		return keyword;
-	}
-
-	public void setKeyword(String keyword) {
-		this.keyword = keyword;
-	}
-
 	// 메소드 - 일반
 	@Override
 	public String toString() {
 		return "BoardVo [no=" + no + ", title=" + title + ", content=" + content + ", hit=" + hit + ", regDate="
-				+ regDate + ", userNo=" + userNo + ", name=" + name + ", keyword=" + keyword + "]";
+				+ regDate + ", userNo=" + userNo + ", name=" + name + "]";
 	}
 
 
