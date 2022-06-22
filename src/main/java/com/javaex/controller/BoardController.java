@@ -82,6 +82,9 @@ public class BoardController {
 	@RequestMapping(value="/modifyForm/{no}", method= {RequestMethod.GET,RequestMethod.POST})
 	public String modifyForm(@PathVariable("no") int no, Model model) {
 		System.out.println("BoardController > modifyForm");
+		
+		//수정폼의 숫자인 걸 구분위해 음수로 바꾸어줬다.
+		no *= -1;
 		BoardVo boardVo = boardService.getBoard(no);
 		model.addAttribute("boardVo", boardVo);
 		

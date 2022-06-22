@@ -21,7 +21,13 @@ public class BoardService {
 	}
 	
 	public BoardVo getBoard(int no) {
-		boardDao.getHit(no);
+		
+		if (no>0) {
+			boardDao.getHit(no);
+			
+		} else {
+				no *= -1;
+		}
 		return boardDao.getBoard(no);
 	}
 	
