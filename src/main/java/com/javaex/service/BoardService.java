@@ -16,15 +16,15 @@ public class BoardService {
 	
 	// board 리스트
 	public List<BoardVo> getBoardList(String keyword){
-		System.out.println("Service:"+keyword);
 		return boardDao.getBoardList(keyword);
 	}
 	
 	public BoardVo getBoard(int no) {
 		
+		//read
 		if (no>0) {
 			boardDao.getHit(no);
-			
+		//modify	
 		} else {
 				no *= -1;
 		}
