@@ -25,6 +25,7 @@ public class BoardController {
 	@RequestMapping(value="/list", method= {RequestMethod.GET,RequestMethod.POST})
 	public String list(Model model, @RequestParam("keyword") String keyword) {
 		System.out.println("BoardController > list");
+		
 		System.out.println("BoardController"+keyword);
 		List<BoardVo> boardList = boardService.getBoardList(keyword);
 		System.out.println(boardList.toString());
