@@ -63,7 +63,7 @@
 									<th>관리</th>
 								</tr>
 							</thead>
-							<c:forEach items="${boardList}" var="boardVo" varStatus="status">
+							<c:forEach items="${boardList}" var="boardVo" varStatus="status" begin="0" end="4" step="1">
 							<tbody>
 								<tr>
 									<td>${status.count }</td>
