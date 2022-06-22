@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.javaex.service.BoardService;
 import com.javaex.vo.BoardVo;
@@ -23,10 +22,10 @@ public class BoardController {
 	
 	// =================================== 게시판(메인) ===================================
 	@RequestMapping(value="/list", method= {RequestMethod.GET,RequestMethod.POST})
-	public String list(@RequestParam("keyword")String keyword ,Model model) {
+	public String list(Model model) {
 		System.out.println("BoardController > list");
 		
-		List<BoardVo> boardList = boardService.getBoardList(keyword);
+		List<BoardVo> boardList = boardService.getBoardList();
 		System.out.println(boardList.toString());
 		
 		model.addAttribute("boardList" , boardList);

@@ -26,9 +26,9 @@
 		left outer join board b on b.user_no = s.no 
 		where not b.no is null 
 	]]>
-		<if test="${keyword}!=null"> 
+		<if test="value !=null"> 
 	<![CDATA[
-		and b.title like '%'||#{keyword}||'%' 
+		and b.title like '%'||#{value}||'%' 
 	]]>
 		</if> 
 	<![CDATA[
