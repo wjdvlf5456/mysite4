@@ -82,7 +82,6 @@ public class BoardController {
 	@RequestMapping(value="/modifyForm/{no}", method= {RequestMethod.GET,RequestMethod.POST})
 	public String modifyForm(@PathVariable("no") int no, Model model) {
 		System.out.println("BoardController > modifyForm");
-		System.out.println(no);
 		BoardVo boardVo = boardService.getBoard(no);
 		model.addAttribute("boardVo", boardVo);
 		
