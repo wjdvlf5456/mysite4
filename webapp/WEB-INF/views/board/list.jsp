@@ -48,7 +48,7 @@
 					<div id="list">
 						<form action="" method="post">
 							<div class="form-group text-right">
-								<input type="text">
+								<input type="text" name="keyword" value="">
 								<button type="submit" id=btn_search>검색</button>
 							</div>
 						</form>
@@ -63,7 +63,7 @@
 									<th>관리</th>
 								</tr>
 							</thead>
-							<c:forEach items="${boardList}" var="boardVo" varStatus="status" begin="0" end="4" step="1">
+							<c:forEach items="${boardList}" var="boardVo" varStatus="status">
 							<tbody>
 								<tr>
 									<td>${status.count }</td>

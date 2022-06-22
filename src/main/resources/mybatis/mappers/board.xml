@@ -13,7 +13,7 @@
 	</resultMap>
 
 	<!-- 목록 -->
-	<select id="selectList" resultMap="resultMapBoardVo">
+	<select id="selectList" parameterType="String" resultMap="resultMapBoardVo">
 	<![CDATA[
 		select 	b.no, 
 				b.title, 
@@ -25,10 +25,18 @@
 		from users s 
 		left outer join board b on b.user_no = s.no 
 		where not b.no is null 
+	]]>
+		<if test="${keyword}!=null"> 
+	<![CDATA[
+		and b.title like '%'||#{keyword}||'%' 
+	]]>
+		</if> 
+	<![CDATA[
 		order by b.no asc
 	]]>
 	</select>
-	
+
+
 	<!-- 게시글 1개 정보 가져오기 -->
 	<select id="getBoard" parameterType="int" resultMap="resultMapBoardVo">
 	<![CDATA[
@@ -44,7 +52,7 @@
 		where b.no = #{no} 
 	]]>
 	</select>
-	
+
 	<!-- 게시글 조회시 조회수 1증가 -->
 	<update id="getHit" parameterType="int">
 		<![CDATA[
@@ -70,7 +78,7 @@
 			where no = #{no}
 		]]>
 	</delete>
-	
+
 	<!-- 수정 -->
 	<update id="boardUpdate" parameterType="BoardVo">
 		<![CDATA[

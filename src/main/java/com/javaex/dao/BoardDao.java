@@ -15,12 +15,12 @@ public class BoardDao {
 	private SqlSession sqlSession;
 
 	// ================================= Board 목록 =================================
-	public List<BoardVo> getBoardList() {
-		List<BoardVo> boardList = sqlSession.selectList("board.selectList");
+	public List<BoardVo> getBoardList(String keyword) {
+		List<BoardVo> boardList = sqlSession.selectList("board.selectList",keyword);
 
 		return boardList;
 	}
-
+	
 	// ============================= 선택한 board 정보 가져오기 =============================
 	public BoardVo getBoard(int no) {
 		System.out.println("BoardDao > getBoard");
