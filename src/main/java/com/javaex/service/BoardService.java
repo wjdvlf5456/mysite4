@@ -21,11 +21,8 @@ public class BoardService {
 	}
 	
 	public BoardVo getBoard(int no) {
+		boardDao.getHit(no);
 		return boardDao.getBoard(no);
-	}
-	
-	public int getHit(int no) {
-		return boardDao.getHit(no);
 	}
 	
 	public int boardInsert(BoardVo boardVo) {

@@ -70,8 +70,6 @@ public class BoardController {
 	@RequestMapping(value="/read/{no}", method= {RequestMethod.GET,RequestMethod.POST})
 	public String read(@PathVariable("no") int no, Model model) {
 		System.out.println("BoardController > read");
-		boardService.getHit(no);
-		
 		BoardVo boardVo = boardService.getBoard(no);
 		
 		model.addAttribute("boardVo", boardVo);
