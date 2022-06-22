@@ -63,10 +63,10 @@
 									<th>관리</th>
 								</tr>
 							</thead>
-							<c:forEach items="${boardList}" var="boardVo">
+							<c:forEach items="${boardList}" var="boardVo" varStatus="status">
 							<tbody>
 								<tr>
-									<td>${boardVo.no }</td>
+									<td>${status.count }</td>
 									<td class="text-left"><a href="${pageContext.request.contextPath}/board/read/${boardVo.no}">${boardVo.title }</a></td>
 									<td>${boardVo.name}</td>
 									<td>${boardVo.hit }</td>

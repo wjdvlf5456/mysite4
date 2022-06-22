@@ -25,7 +25,7 @@
 		from users s 
 		left outer join board b on b.user_no = s.no 
 		where not b.no is null 
-		order by b.no desc
+		order by b.no asc
 	]]>
 	</select>
 	
