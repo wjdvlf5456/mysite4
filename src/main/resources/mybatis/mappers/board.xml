@@ -28,7 +28,7 @@
 	]]>
 		<if test="value !=null"> 
 	<![CDATA[
-		and b.title like '%value%' 
+		and b.title like '%${value}%' 
 	]]>
 		</if> 
 	<![CDATA[

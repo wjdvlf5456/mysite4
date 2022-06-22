@@ -15,8 +15,9 @@ public class BoardService {
 	private BoardDao boardDao;
 	
 	// board 리스트
-	public List<BoardVo> getBoardList(){
-		return boardDao.getBoardList();
+	public List<BoardVo> getBoardList(String keyword){
+		System.out.println("Service:"+keyword);
+		return boardDao.getBoardList(keyword);
 	}
 	
 	public BoardVo getBoard(int no) {
