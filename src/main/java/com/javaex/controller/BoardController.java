@@ -101,6 +101,7 @@ public class BoardController {
 		
 		//list.jsp로 리다이렉트
 		return "redirect:./list";
+		
 	}
 	
 	
