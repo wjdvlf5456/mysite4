@@ -14,7 +14,6 @@
 
 	<!-- 목록 -->
 	<select id="selectList" parameterType="String" resultMap="resultMapBoardVo">
-	<![CDATA[
 		select 	b.no, 
 				b.title, 
 				b.content, 
@@ -25,15 +24,10 @@
 		from users s 
 		left outer join board b on b.user_no = s.no 
 		where not b.no is null 
-	]]>
 		<if test="value !=null"> 
-	<![CDATA[
 		and b.title like '%${value}%' 
-	]]>
 		</if> 
-	<![CDATA[
 		order by b.no asc
-	]]>
 	</select>
 
 

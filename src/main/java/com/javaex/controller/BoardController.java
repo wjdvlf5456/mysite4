@@ -26,7 +26,7 @@ public class BoardController {
 	public String list(Model model, @RequestParam(required = false) String keyword) {
 		System.out.println("BoardController > list");
 		
-		System.out.println("BoardController"+keyword);
+		System.out.println("BoardController keyword: " + keyword);
 		List<BoardVo> boardList = boardService.getBoardList(keyword);
 		System.out.println(boardList.toString());
 		
