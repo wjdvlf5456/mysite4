@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
 <html>
@@ -7,16 +7,18 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
+<!-- css -->
 <link href="${pageContext.request.contextPath}/assets/css/mysite.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/assets/css/guestbook.css" rel="stylesheet" type="text/css">
 
+<!-- js -->
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery/jquery-1.12.4.js"></script>
 </head>
 
 <body>
 	<div id="wrap">
-	
+
 		<c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
-		
 
 		<div id="container" class="clearfix">
 			<div id="aside">
@@ -43,7 +45,7 @@
 				<!-- //content-head -->
 
 				<div id="guestbook">
-					<form action="" method="">
+					<form action="" method="get">
 						<table id="guestAdd">
 							<colgroup>
 								<col style="width: 70px;">
@@ -53,12 +55,10 @@
 							</colgroup>
 							<tbody>
 								<tr>
-									<th><label class="form-text" for="input-uname">이름</label>
-									</th>
+									<th><label class="form-text" for="input-uname">이름</label></th>
 									<td><input id="input-uname" type="text" name="name"></td>
-									<th><label class="form-text" for="input-pass">패스워드</label>
-									</th>
-									<td><input id="input-pass" type="password" name="pass"></td>
+									<th><label class="form-text" for="input-pass">패스워드</label></th>
+									<td><input id="input-pass" type="password" name="password"></td>
 								</tr>
 								<tr>
 									<td colspan="4"><textarea name="content" cols="72" rows="5"></textarea></td>
@@ -70,7 +70,6 @@
 
 						</table>
 						<!-- //guestWrite -->
-						<input type="hidden" name="action" value="add">
 
 					</form>
 
@@ -105,5 +104,28 @@
 	<!-- //wrap -->
 
 </body>
+<script type="text/javascript">
+<!--준비가 끝나면-->
+$(document).ready(function() {
+	console.log("jquery 로 요청");
 
+	$.ajax({
+		// ========================= 보낼 때 =========================
+		url : "${pageContext.request.contextPath }/api/guestbook/list",
+		type : "post",
+		//contentType : "application/json",
+		//data : {name: ”홍길동"},
+		
+		// ========================= 받을 때 =========================
+		dataType : "json",
+		success : function(guestBookList) {
+			console.log(guestBookList);
+			/*성공시 처리해야될 코드 작성*/
+		},
+		error : function(XHR, status, error) {
+			console.error(status + " : " + error);
+		}
+});
+});
+</script>
 </html>
