@@ -48,37 +48,36 @@
 				<!-- //content-head -->
 
 				<div id="guestbook">
-					<form action="${pageContext.request.contextPath}/gbc/add" method="post">
-						<table id="guestAdd">
-							<colgroup>
-								<col style="width: 70px;">
-								<col>
-								<col style="width: 70px;">
-								<col>
-							</colgroup>
-							<tbody>
-								<tr>
-									<th><label class="form-text" for="input-uname">이름</label></th>
-									<td><input id="input-uname" type="text" name="name" value=""></td>
-									<th><label class="form-text" for="input-pass">패스워드</label></th>
-									<td><input id="input-pass" type="password" name="password" value="" autocomplete="on"></td>
-								</tr>
-								<tr>
-									<td colspan="4"><textarea name="content" cols="72" rows="5"></textarea></td>
-								</tr>
-								<tr class="button-area">
-									<td colspan="4" class="text-center"><button type="submit">등록</button></td>
-								</tr>
-							</tbody>
+					<%-- <form action="${pageContext.request.contextPath}/api/guestbook/add" method="get"> --%>
+					<table id="guestAdd">
+						<colgroup>
+							<col style="width: 70px;">
+							<col>
+							<col style="width: 70px;">
+							<col>
+						</colgroup>
+						<tbody>
+							<tr>
+								<th><label class="form-text" for="input-uname">이름</label></th>
+								<td><input id="input-uname" type="text" name="name" value=""></td>
+								<th><label class="form-text" for="input-pass">패스워드</label></th>
+								<td><input id="input-pass" type="password" name="password" value=""></td>
+							</tr>
+							<tr>
+								<td colspan="4"><textarea name="content" cols="72" rows="5"></textarea></td>
+							</tr>
+							<tr class="button-area">
+								<td colspan="4" class="text-center"><button type="submit" id="btnSubmit">등록</button></td>
+							</tr>
+						</tbody>
 
-						</table>
-						<!-- //guestWrite -->
+					</table>
+					<!-- //guestWrite -->
 
-					</form>
-					
-					<div id="listArea">
-					
-					</div>
+					<!-- </form> -->
+
+					<!-- 리스트 영역 -->
+					<div id="listArea"></div>
 
 
 				</div>
@@ -99,58 +98,97 @@
 </body>
 <script type="text/javascript">
 <!-- 준비가 끝나면 -->
-$(document).ready(function(){
-	   console.log("jquery로 data만 받는 요청");
-	   
-	   $.ajax({
-	      url :"/mysite4/api/guestbook/list",      
-	      type : "post",
-	      //contentType : "application/json",
-	      //data : {name: ”홍길동"},
-	      
-	      dataType : "json",
-	      success : function(guestList){
-	         /*성공시 처리해야될 코드 작성*/
-	         console.log(guestList);
-	         //화면에 data + html을 그린다.
-	         for (var i = 0; i < guestList.length; i++) {
-				render(guestList[i]);
-			}
-	         
-	      },
-	      error : function(XHR, status, error) {
-	         console.error(status + " : " + error);
-	      }
-	   });
-	   
+//리스트 요청
+$(document).ready(function() {
+	console.log("jquery로 data만 받는 요청");
+	fetchList()
+});
+
+$("#btnSubmit").on("click",function() {
+	console.log("저장버튼 클릭");
+	
+	// 데이터 수집
+	var name = $("[name='name']").val();
+	var password = $("[name='password']").val();
+	var content = $("[name=content]").val();
+	
+	var guestVo = {
+		name: name,
+		password: password,
+		content: content
+	};
+	
+
+	$.ajax({
+		//url : "${pageContext.request.contextPath}/api/guestbook/add?name="+ name + "&password="+ password +"&content="+content,
+		url : "${pageContext.request.contextPath}/api/guestbook/add",
+		type : "get",
+		//contentType : "application/json",
+		data : guestVo,
+
+		dataType : "json",
+		success : function(result) {
+			
+		},
+		error : function(XHR, status, error) {
+			console.error(status + " : " + error);
+		}
+
 	})
 	
-function render(guestbookVo) {
-	console.log("render()");
 	
-	var str = '';
-	   str += '<table class="guestRead">';
-	   str += '   <colgroup>';
-	   str += '      <col style="width: 10%;">';
-	   str += '      <col style="width: 40%;">';
-	   str += '      <col style="width: 40%;">';
-	   str += '      <col style="width: 10%;">';
-	   str += '   </colgroup>';
-	   str += '   <tr>';
-	   str += '      <td>'+ guestbookVo.no +'</td>';
-	   str += '      <td>'+ guestbookVo.name +'</td>';
-	   str += '      <td>'+ guestbookVo.regDate +'</td>';
-	   str += '      <td><a href="">[삭제]</a></td>';
-	   str += '   </tr>';
-	   str += '   <tr>';
-	   str += '      <td colspan=4 class="text-left">' + guestbookVo.content +'</td>';
-	   str += '   </tr>';   
-	   str += '</table>';
-	   
-	   $("#listArea").append(str);
-}	
-	
-	
+});
+
+	function fetchList() {
+		$.ajax({
+			url : "${pageContext.request.contextPath}/api/guestbook/list",
+			type : "post",
+			//contentType : "application/json",
+			//data : {name: ”홍길동"},
+
+			dataType : "json",
+			success : function(guestList) {
+				/*성공시 처리해야될 코드 작성*/
+				console.log(guestList);
+				//화면에 data + html을 그린다.
+				for (var i = 0; i < guestList.length; i++) {
+					render(guestList[i]);
+				}
+
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+
+		})
+
+	}
+
+	function render(guestbookVo) {
+		console.log("render()");
+
+		var str = '';
+		str += '<table class="guestRead">';
+		str += '   <colgroup>';
+		str += '      <col style="width: 10%;">';
+		str += '      <col style="width: 40%;">';
+		str += '      <col style="width: 40%;">';
+		str += '      <col style="width: 10%;">';
+		str += '   </colgroup>';
+		str += '   <tr>';
+		str += '      <td>' + guestbookVo.no + '</td>';
+		str += '      <td>' + guestbookVo.name + '</td>';
+		str += '      <td>' + guestbookVo.regDate + '</td>';
+		str += '      <td><a href="">[삭제]</a></td>';
+		str += '   </tr>';
+		str += '   <tr>';
+		str += '      <td colspan=4 class="text-left">' + guestbookVo.content
+				+ '</td>';
+		str += '   </tr>';
+		str += '</table>';
+
+		$("#listArea").append(str);
+	}
 </script>
 
 </html>

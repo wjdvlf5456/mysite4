@@ -40,6 +40,9 @@
 
 	<!-- 등록 -->
 	<insert id="guestInsert" parameterType="GuestBookVo">
+		<selectKey keyProperty="no" resultType="int" order="BEFORE">
+			select seq_guestbook_no.nextval from dual
+		</selectKey>
 		<![CDATA[
 			insert into guestbook 
 			values(seq_guestbook_no.nextval, #{name},#{password},#{content},sysdate)

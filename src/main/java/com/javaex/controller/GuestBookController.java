@@ -21,7 +21,7 @@ public class GuestBookController {
 	@Autowired
 	private GuestBookService guestBookService;
 	
-	// =================================== 방명록 메인 ===================================
+	// ================================= 방명록 메인 =================================
 	@RequestMapping(value="/addList", method= {RequestMethod.GET,RequestMethod.POST})
 	public String addList(Model model) {
 		System.out.println("GuestBookController > addList");
@@ -33,7 +33,7 @@ public class GuestBookController {
 		return "guestbook/addList";
 	}
 	
-	// =================================== 방명록에 글쓰기 ===================================
+	// ============================= 방명록에 글쓰기 ==============================
 	@RequestMapping(value="/add", method= {RequestMethod.GET,RequestMethod.POST})
 	public String add(@ModelAttribute GuestBookVo guestBookVo) {
 		System.out.println("GuestBookController > add");
