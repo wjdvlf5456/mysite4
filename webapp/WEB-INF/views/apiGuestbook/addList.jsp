@@ -78,7 +78,6 @@
 
 					<!-- </form> -->
 
-					<button id="btnTest" class="btn btn-primary">모달창</button>
 					<!-- 리스트 영역 -->
 					<div id="listArea"></div>
 
@@ -110,14 +109,13 @@
 					<h4 class="modal-title">비밀번호를 입력하세요</h4>
 				</div>
 				<div class="modal-body">
-					비밀번호<input type="text" name="password" value=""> <br>
-					<input type="text" name="no" value="">
+					비밀번호<input type="text" name="password" value=""> <br> <input type="text" name="no" value="">
 
 					<p>One fine body&hellip;</p>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Save changes</button>
+					<button id="btnModalDel" type="button" class="btn btn-danger">delete</button>
 				</div>
 			</div>
 			<!-- /.modal-content -->
@@ -171,6 +169,7 @@
 			}
 
 		});
+		// ajax 
 
 	});
 
@@ -183,6 +182,64 @@
 		$("#delModal").modal("show");
 	});
 	*/
+	
+	$("#listArea").on("click", ".btnDel", function(){
+		console.log("삭제버튼")
+		var $this = $(this);
+		var no = $this.data("no");
+		console.log(no);
+		
+		//모달창에 no
+		$('#delModal [name="password"]').val("");
+		$('[name="no"]').val(no);
+		
+		//모달창 띄우기
+		$("#delModal").modal("show");
+		
+	});
+	
+	/* 모달창 삭제버튼 클릭할 때 */
+	$("#btnModalDel").on("click",function(){
+		console.log("모달창 삭제버튼 클릭");
+		
+		//데이터 모으기
+		var password = $('#delModal [name=password]').val();
+		var no = $('[name=no]').val();
+		
+		var guestbookVo={
+				no: no, 
+				password: password
+		};
+		
+		console.log(guestbookVo);
+		
+		$.ajax({
+			url : "${pageContext.request.contextPath}/api/guestbook/remove",
+			type : "post",
+			//contentType: "application/json",
+			data : guestbookVo,
+
+			dataType : "json",
+			success : function(result) {
+				//성공시 출력할 코드
+				console.log(result);
+				
+				if (result == "true") {
+				$("#t"+no).remove();
+				$("#delModal").modal("hide");
+					
+				} else {
+					alert("비밀번호가 틀립니다.");
+				}
+				
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
+		// ajax 
+		
+	});
 
 	// 리스트 요청
 	function fetchList() {
@@ -214,7 +271,7 @@
 		console.log("render()");
 
 		var str = '';
-		str += '<table class="guestRead">';
+		str += '<table id="t' + guestbookVo.no +'" class="guestRead">';
 		str += '   <colgroup>';
 		str += '      <col style="width: 10%;">';
 		str += '      <col style="width: 40%;">';
@@ -225,20 +282,13 @@
 		str += '      <td>' + guestbookVo.no + '</td>';
 		str += '      <td>' + guestbookVo.name + '</td>';
 		str += '      <td>' + guestbookVo.regDate + '</td>';
-		str += '      <td><button type="button" class="btnDel">[삭제]</button></td>';
+		str += '      <td><button type="button" class="btnDel" data-no=' + guestbookVo.no + '>[삭제]</button></td>';
 		str += '   </tr>';
 		str += '   <tr>';
-		str += '      <td colspan=4 class="text-left">' + guestbookVo.content
-				+ '</td>';
+		str += '      <td colspan=4 class="text-left">' + guestbookVo.content + '</td>';
 		str += '   </tr>';
 		str += '</table>';
 		
-		// ==================== 삭제 버튼(bootstrap 적용) ====================
-		$(".btnDel").on("click", function(){
-			console.log("삭제버튼")
-			
-			$("#delModal").modal("show");
-		});
 		
 		//리스트 순서
 		if (opt == "down") {

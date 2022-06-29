@@ -33,8 +33,19 @@ public class GuestBookService {
 		return gVo;
 	}
 
-	public int guestDelete(int no) {
-		return guestBookDao.guestDelete(no);
+	public String guestDelete(GuestBookVo guestBookVo) {
+		GuestBookVo gVo = guestBookDao.getGuest(guestBookVo.getNo());
+		
+		String state = "";
+		
+		if (guestBookVo.getPassword().equals(gVo.getPassword())) {
+			guestBookDao.guestDelete(gVo.getNo());
+			state += "true";
+		} else {
+			state += "false";
+		}
+		
+		return state;
 	}
 
 	public GuestBookVo getGuest(int no) {
