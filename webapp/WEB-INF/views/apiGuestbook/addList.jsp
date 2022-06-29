@@ -79,7 +79,6 @@
 					<!-- </form> -->
 
 					<button id="btnTest" class="btn btn-primary">모달창</button>
-
 					<!-- 리스트 영역 -->
 					<div id="listArea"></div>
 
@@ -108,9 +107,12 @@
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
-					<h4 class="modal-title">Modal title</h4>
+					<h4 class="modal-title">비밀번호를 입력하세요</h4>
 				</div>
 				<div class="modal-body">
+					비밀번호<input type="text" name="password" value=""> <br>
+					<input type="text" name="no" value="">
+
 					<p>One fine body&hellip;</p>
 				</div>
 				<div class="modal-footer">
@@ -171,12 +173,17 @@
 		});
 
 	});
-	$("btnTest").on("click", function(){
+
+	//============================ 모달 ============================
+		/*
+	$("#btnTest").on("click", function() {
 		console.log("테스트버튼 클릭")
+
+		//모달창 띄우기
+		$("#delModal").modal("show");
 	});
-	
-	
-	
+	*/
+
 	// 리스트 요청
 	function fetchList() {
 		$.ajax({
@@ -218,14 +225,22 @@
 		str += '      <td>' + guestbookVo.no + '</td>';
 		str += '      <td>' + guestbookVo.name + '</td>';
 		str += '      <td>' + guestbookVo.regDate + '</td>';
-		str += '      <td><a href="">[삭제]</a></td>';
+		str += '      <td><button type="button" class="btnDel">[삭제]</button></td>';
 		str += '   </tr>';
 		str += '   <tr>';
 		str += '      <td colspan=4 class="text-left">' + guestbookVo.content
 				+ '</td>';
 		str += '   </tr>';
 		str += '</table>';
-
+		
+		// ==================== 삭제 버튼(bootstrap 적용) ====================
+		$(".btnDel").on("click", function(){
+			console.log("삭제버튼")
+			
+			$("#delModal").modal("show");
+		});
+		
+		//리스트 순서
 		if (opt == "down") {
 			$("#listArea").append(str);
 
@@ -235,6 +250,7 @@
 		} else {
 			console.log("opt오류");
 		}
+
 
 	}
 </script>
