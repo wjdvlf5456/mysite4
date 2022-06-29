@@ -21,9 +21,16 @@ public class GuestBookService {
 	}
 
 	// ================ 방명록 저장(ajax) ===============
-	public int guestInsert(GuestBookVo guestBookVo) {
+	public GuestBookVo guestInsert(GuestBookVo guestBookVo) {
 		System.out.println("GuestBookSerVice > guestInsert");
-		return guestBookDao.guestInsert(guestBookVo);
+		
+		int count = guestBookDao.guestInsert(guestBookVo);
+		
+		int no = guestBookVo.getNo();
+		GuestBookVo gVo = guestBookDao.getGuest(no);
+		System.out.println(gVo);
+		
+		return gVo;
 	}
 
 	public int guestDelete(int no) {
