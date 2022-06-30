@@ -19,6 +19,11 @@
 		from files 
 		where no is not null
 	</select>
+	
+	<insert id="fileInsert" parameterType="FileVo">
+		insert into files 
+		values(seq_files_no.nextval,#{orgName}, #{saveName}, #{filePath}, #{fileSize})
+	</insert>
 
 
 </mapper>

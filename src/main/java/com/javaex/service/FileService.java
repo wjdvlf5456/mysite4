@@ -46,9 +46,8 @@ public class FileService {
 		System.out.println(fileVo);
 		
 		
-		
-		
 		//--> dao DB저장
+		fileDao.fileInsert(fileVo);
 		
 		
 		//(2)파일저장

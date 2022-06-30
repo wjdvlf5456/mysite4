@@ -14,9 +14,12 @@ public class FileDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public List<FileVo> fileList(){
+	public String fileInsert(FileVo fileVo) {
 		
-		return sqlSession.selectList("selectFileList"); 
+		int count = sqlSession.insert("fileInsert",fileVo);
+		
+		return count + "개의 파일을 저장하였습니다.";
 	}
+	
 
 }
