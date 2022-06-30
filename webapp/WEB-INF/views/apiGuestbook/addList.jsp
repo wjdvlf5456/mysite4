@@ -147,6 +147,47 @@
 			content : content
 		};
 
+		console.log(guestVo);
+
+		$.ajax({
+			url : "${pageContext.request.contextPath}/api/guestbook/add2",
+			type : "post",
+			contentType : "application/json",
+			data : JSON.stringify(guestVo), //js객체를 JSON문자열로 변환
+
+			dataType : "json",
+			success : function(gVo) {
+				render(gVo, "up");
+
+				//입력폼 초기화
+				$("[name='name']").val("");
+				$("[name='password']").val("");
+				$("[name='content']").val("");
+
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+
+		});
+		// ajax 
+
+	});
+	/*
+	$("#btnSubmit").on("click", function() {
+		console.log("저장버튼 클릭");
+
+		// 데이터 수집
+		var name = $("[name='name']").val();
+		var password = $("[name='password']").val();
+		var content = $("[name=content]").val();
+
+		var guestVo = {
+			name : name,
+			password : password,
+			content : content
+		};
+
 		$.ajax({
 			//url : "${pageContext.request.contextPath}/api/guestbook/add?name="+ name + "&password="+ password +"&content="+content,
 			url : "${pageContext.request.contextPath}/api/guestbook/add",
@@ -172,47 +213,48 @@
 		// ajax 
 
 	});
+	 */
 
 	//============================ 모달 ============================
-		/*
+	/*
 	$("#btnTest").on("click", function() {
-		console.log("테스트버튼 클릭")
+	console.log("테스트버튼 클릭")
 
-		//모달창 띄우기
-		$("#delModal").modal("show");
+	//모달창 띄우기
+	$("#delModal").modal("show");
 	});
-	*/
-	
-	$("#listArea").on("click", ".btnDel", function(){
+	 */
+
+	$("#listArea").on("click", ".btnDel", function() {
 		console.log("삭제버튼")
 		var $this = $(this);
 		var no = $this.data("no");
 		console.log(no);
-		
+
 		//모달창에 no
 		$('#delModal [name="password"]').val("");
 		$('[name="no"]').val(no);
-		
+
 		//모달창 띄우기
 		$("#delModal").modal("show");
-		
+
 	});
-	
+
 	/* 모달창 삭제버튼 클릭할 때 */
-	$("#btnModalDel").on("click",function(){
+	$("#btnModalDel").on("click", function() {
 		console.log("모달창 삭제버튼 클릭");
-		
+
 		//데이터 모으기
 		var password = $('#delModal [name=password]').val();
 		var no = $('[name=no]').val();
-		
-		var guestbookVo={
-				no: no, 
-				password: password
+
+		var guestbookVo = {
+			no : no,
+			password : password
 		};
-		
+
 		console.log(guestbookVo);
-		
+
 		$.ajax({
 			url : "${pageContext.request.contextPath}/api/guestbook/remove",
 			type : "post",
@@ -223,22 +265,22 @@
 			success : function(result) {
 				//성공시 출력할 코드
 				console.log(result);
-				
+
 				if (result == "true") {
-				$("#t"+no).remove();
-				$("#delModal").modal("hide");
-					
+					$("#t" + no).remove();
+					$("#delModal").modal("hide");
+
 				} else {
 					alert("비밀번호가 틀립니다.");
 				}
-				
+
 			},
 			error : function(XHR, status, error) {
 				console.error(status + " : " + error);
 			}
 		});
 		// ajax 
-		
+
 	});
 
 	// 리스트 요청
@@ -285,11 +327,11 @@
 		str += '      <td><button type="button" class="btnDel" data-no=' + guestbookVo.no + '>[삭제]</button></td>';
 		str += '   </tr>';
 		str += '   <tr>';
-		str += '      <td colspan=4 class="text-left">' + guestbookVo.content + '</td>';
+		str += '      <td colspan=4 class="text-left">' + guestbookVo.content
+				+ '</td>';
 		str += '   </tr>';
 		str += '</table>';
-		
-		
+
 		//리스트 순서
 		if (opt == "down") {
 			$("#listArea").append(str);
@@ -300,7 +342,6 @@
 		} else {
 			console.log("opt오류");
 		}
-
 
 	}
 </script>

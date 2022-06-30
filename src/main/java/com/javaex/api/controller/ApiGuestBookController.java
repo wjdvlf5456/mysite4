@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -49,6 +50,20 @@ public class ApiGuestBookController {
 		
 		return gVo;
 	}
+	
+	// ============================== 방명록에 글쓰기(JSON) ==============================
+	@ResponseBody
+	@RequestMapping(value = "/add2", method = {RequestMethod.GET, RequestMethod.POST})
+	public GuestBookVo add2(@RequestBody GuestBookVo guestBookVo) {
+		System.out.println("apiGuestBookController > add2");
+		
+		GuestBookVo gVo = guestBookService.guestInsert(guestBookVo);
+
+		
+		return gVo;
+	}
+	
+	
 	
 	// =================================== 방명록 삭제 ===================================
 	@ResponseBody

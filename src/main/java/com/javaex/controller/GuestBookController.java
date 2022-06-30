@@ -60,7 +60,7 @@ public class GuestBookController {
 	public String delete(@RequestParam("no") int no, @RequestParam("password") String password) {
 		System.out.println("GuestBookController > delete");
 		if (guestBookService.getGuest(no).getPassword().equals(password)) {
-			guestBookService.guestDelete(no);
+			//guestBookService.guestDelete(no);
 		} else {
 			System.out.println("비밀번호가 틀립니다.");
 		}
