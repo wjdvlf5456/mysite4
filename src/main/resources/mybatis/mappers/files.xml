@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="files">
+	<resultMap id="resultMapFileVo" type="FileVo">
+		<result column="no" property="no" />
+		<result column="orgName" property="orgName" />
+		<result column="saveName" property="saveName" />
+		<result column="filePath" property="filePath" />
+		<result column="fileSize" property="fileSize" />
+	</resultMap>
+	
+	<select id="selectFileList">
+		select 	no, 
+				orgName, 
+				saveName, 
+				filePath, 
+				fileSize 
+		from files 
+		where no is not null
+	</select>
+
+
+</mapper>
