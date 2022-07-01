@@ -70,5 +70,11 @@ public class GalleryService {
 		
 	}
 	
+	public String imgDelete(int no) {
+		String success = galleryDao.imgDelete(no);
+		
+		return success;
+	};
+	
 
 }

@@ -28,7 +28,7 @@ public class GalleryDao {
 	
 	public String imgDelete(int no) {
 		int count = sqlSession.delete("gallery.imgDelete",no);
-		return count + "건을 삭제하였습니다.";
+		return "true";
 	}
 
 }

@@ -48,7 +48,7 @@
 			<div id="gallery">
 				<div id="list">
 					<c:if test="${authUser!=null }">
-							<button id="btnImgUpload" type="submit">이미지올리기</button>
+						<button id="btnImgUpload" type="submit">이미지올리기</button>
 					</c:if>
 
 					<div class="clear"></div>
@@ -58,10 +58,8 @@
 						<!-- 이미지반복영역 -->
 						<li><c:forEach items="${imgList}" var="galleryVo">
 								<div class="view">
-									<img class="imgItem" src="${pageContext.request.contextPath }/upload/${galleryVo.saveName}">
-									<input type="hidden" name="no" value="${galleryVo.no}">
-									<input type="hidden" name="userNo" value="${galleryVo.userNo}">
-									
+									<img class="imgItem" src="${pageContext.request.contextPath }/upload/${galleryVo.saveName}"> <input type="hidden" name="no" value="${galleryVo.no}"> <input type="hidden" name="userNo" value="${galleryVo.userNo}">
+
 									<div class="imgWriter">
 										작성자: <strong>${galleryVo.name}</strong>
 									</div>
@@ -101,13 +99,10 @@
 				<form action="${pageContext.request.contextPath }/gallery/upload" method="post" enctype="multipart/form-data">
 					<div class="modal-body">
 						<div class="form-group">
-							<label class="form-text">글작성</label>
-							<input id="addModalContent" type="text" name="content" value="">
-							<input type="hidden" name="userNo" value="${authUser.no}"> 
+							<label class="form-text">글작성</label> <input id="addModalContent" type="text" name="content" value=""> <input type="hidden" name="userNo" value="${authUser.no}">
 						</div>
 						<div class="form-group">
-							<label class="form-text">이미지선택</label> 
-							<input id="file" type="file" name="file" >
+							<label class="form-text">이미지선택</label> <input id="file" type="file" name="file">
 						</div>
 					</div>
 					<div class="modal-footer">
@@ -138,7 +133,7 @@
 				<div class="modal-body">
 
 					<div class="formgroup">
-						<img id="viewModelImg" src="${pageContext.request.contextPath }/upload/${galleryVo.saveName}">
+						<img id="viewModelImg" src="" name="saveName">
 						<!-- ajax로 처리 : 이미지출력 위치-->
 					</div>
 
@@ -147,11 +142,9 @@
 					</div>
 
 				</div>
-				
-				
 				<form method="${pageContext.request.contextPath }/gallery/delete" action="post">
 					<div class="modal-footer">
-							<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 						<c:if test="${authUser.no!=null}">
 							<button type="button" class="btn btn-danger" id="btnDel">삭제</button>
 						</c:if>
@@ -170,70 +163,42 @@
 
 </body>
 <script type="text/javascript">
-/*=================== 업로드 창 띄우기 ===================*/
-	$("#btnImgUpload").on("click",function(){
+	/*=================== 업로드 창 띄우기 ===================*/
+	$("#btnImgUpload").on("click", function() {
 		$("#addModal").modal("show");
 	});
-	
-/*=================== 이미지보기 창 띄우기 ===================*/
-	$(".view").on("click",function(){
+
+	/*=================== 이미지보기 창 띄우기 ===================*/
+	$("#viewArea").on("click", function() {
 		var $this = $(this);
-		
+
 		//모달창에 사진,content 띄우기
 		var no = $this.data("no");
 		var userNo = $this.data("userNo");
 		var content = $this.data("content");
-		var saveName = $this.data("saveName");
+		var srce = "mysite4/upload/";
+		var saveName = $this.data("${galleryVo.saveName}");
 		
+		console.log(no);
+		console.log(userNo);
+		console.log(content);
+		console.log(saveName);
+		console.log(srce);
+		
+		var dd = srce+saveName;
+		
+		console.log(dd);
+
 		$('[name="no"]').val(no);
 		$('[name="userNo"]').val(userNo);
-		$('#viewModelContent').val(content);
-		$('[name="saveName"]').val(saveName);
-		
+		$('[name="content"]').val(content);
+		$('#viewModelImg').attr("src",dd);
+
 		//모달창 띄우기
 		$("#viewModal").modal("show");
 	});
 	
-/*=================== 삭제 누르면 이미지 삭제됨 ===================*/
-	$("#btnDel").on("click",function(){
-		//데이터 모으기
-		var no = $('[name=no]').val();
 
-		var guestbookVo = {
-			no : no,
-		};
-
-		console.log(guestbookVo);
-
-		$.ajax({
-			url : "${pageContext.request.contextPath}/gallery/delete",
-			type : "post",
-			contentType: "application/json",
-			data : guestbookVo,
-
-			dataType : "json",
-			success : function(result) {
-				//성공시 출력할 코드
-				console.log(result);
-
-				if (result == "true") {
-					$("#t" + no).remove();
-					$("#delModal").modal("hide");
-
-				} else {
-					alert("비밀번호가 틀립니다.");
-				}
-
-			},
-			error : function(XHR, status, error) {
-				console.error(status + " : " + error);
-			}
-		});
-		// ajax 
-		
-	});
-	
-	
 </script>
 
 

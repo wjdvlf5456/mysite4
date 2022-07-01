@@ -48,15 +48,11 @@ public class GalleryController {
 	// ================================= 사진 업로드  =================================
 		@ResponseBody
 		@RequestMapping(value = "/delete", method = {RequestMethod.GET, RequestMethod.POST})
-		public String imgDelete(@RequestParam("file") MultipartFile file,@RequestParam("userNo") int userNo, @RequestParam("content") String content) {
+		public String imgDelete(@RequestParam("no") int no) {
 			System.out.println("GalleryController > delete");
+			String success = galleryService.imgDelete(no);
 			
-			
-			GalleryVo galleryVo = new GalleryVo(userNo,content);
-			
-			galleryService.imgUpload(galleryVo,file);
-			
-			return "redirect:list";
+			return success;
 		}
 	
 	

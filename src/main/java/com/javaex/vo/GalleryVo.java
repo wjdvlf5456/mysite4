@@ -17,6 +17,10 @@ public class GalleryVo {
 		
 	}
 	
+	public GalleryVo(int no) {
+		this.no = no;
+	}
+	
 	public GalleryVo(int no, int userNo) {
 		this.no = no;
 		this.userNo = userNo;
