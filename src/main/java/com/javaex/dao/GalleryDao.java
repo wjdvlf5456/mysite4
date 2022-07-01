@@ -16,12 +16,14 @@ public class GalleryDao {
 	
 	public List<GalleryVo> imgList(){
 		List<GalleryVo> imgList = sqlSession.selectList("gallery.selectImgList"); 
+		System.out.println(imgList);
 		return imgList;
 	};
 	
-	public String imgInsert() {
+	public String imgInsert(GalleryVo galleryVo) {
+		int count = sqlSession.insert("gallery.imgInsert",galleryVo);
 		
-		return "";
+		return count + "건을 업로딩하였습니다.";
 	}
 
 }

@@ -41,14 +41,13 @@ public class FileController {
 	
 	// =================================== 갤러리 파일 업로드 ===================================
 	@RequestMapping(value = "/upload", method = {RequestMethod.GET,RequestMethod.POST})
-	public String upload(@RequestParam("file") MultipartFile file, Model model) {
+	public String upload(@RequestParam("file") MultipartFile file) {
 		System.out.println("FileController > upload");
 		System.out.println(file.getOriginalFilename());
 		
-		String saveName = fileService.save(file);
-		model.addAttribute("saveName",saveName);
+		fileService.save(file);
 		
-		return "fileupload/result";
+		return "redirect:result";
 	}
 
 }

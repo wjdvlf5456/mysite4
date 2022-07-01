@@ -6,28 +6,34 @@
 		<result column="no" property="no" />
 		<result column="user_no" property="userNo" />
 		<result column="content" property="content" />
-		<result column="filePath" property="filePath" />
-		<result column="orgName" property="orgName" />
-		<result column="saveName" property="saveName" />
-		<result column="fileSize" property="fileSize" />
+		<result column="file_path" property="filePath" />
+		<result column="org_name" property="orgName" />
+		<result column="save_name" property="saveName" />
+		<result column="file_size" property="fileSize" />
+		<result column="name" property="name" />
 	</resultMap>
 	
 	<select id="selectImgList" resultMap="resultMapGalleryVo">
-		select 	no, 
-				user_no, 
-				content, 
-				filePath, 
-				orgName, 
-				saveName, 
-				fileSize 
-		from gallery 
-		where not no is null 
-		order by no asc
+		<![CDATA[
+			select 	g.no, 
+					g.user_no, 
+					g.content, 
+					g.file_path, 
+					g.org_name, 
+					g.save_name, 
+					g.file_size, 
+			        u.name 
+			from gallery g left outer join users u on g.user_no = u.no 
+			where not g.no is null 
+			order by g.no asc
+		]]>
 	</select>
 	
 	<insert id="imgInsert" parameterType="GalleryVo">
-		insert into gallery 
-		values(seq_gallery_no.nextval,#{userNo}, #{content}, #{filePath}, #{orgName},#{saveName}, #{fileSize});
+		<![CDATA[
+			insert into gallery 
+			values(seq_gallery_no.nextval,#{userNo}, #{content}, #{filePath}, #{orgName},#{saveName}, #{fileSize})
+		]]>
 	</insert>
 
 

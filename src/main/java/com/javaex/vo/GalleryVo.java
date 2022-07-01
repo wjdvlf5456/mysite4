@@ -9,14 +9,20 @@ public class GalleryVo {
 	private String filePath;
 	private String orgName;
 	private String saveName;
-	private int fileSize;
+	private long fileSize;
+	private String name;
 	
 	//생성자
 	public GalleryVo() {
 		
 	}
 	
-	public GalleryVo(int userNo, String content, String filePath, String orgName, String saveName,int fileSize) {
+	public GalleryVo(int userNo, String content) {
+		this.userNo = userNo;
+		this.content = content;
+	}
+	
+	public GalleryVo(int userNo, String content, String filePath, String orgName, String saveName, long fileSize) {
 		this.userNo = userNo;
 		this.content = content;
 		this.filePath = filePath;
@@ -24,8 +30,19 @@ public class GalleryVo {
 		this.saveName = saveName;
 		this.fileSize = fileSize;
 	}
-
-	public GalleryVo(int no, int userNo, String content, String filePath, String orgName, String saveName,int fileSize) {
+	
+	
+	public GalleryVo(int userNo, String content, String filePath, String orgName, String saveName, long fileSize, String name) {
+		this.userNo = userNo;
+		this.content = content;
+		this.filePath = filePath;
+		this.orgName = orgName;
+		this.saveName = saveName;
+		this.fileSize = fileSize;
+		this.name = name;
+	}
+	
+	public GalleryVo(int no, int userNo, String content, String filePath, String orgName, String saveName, long fileSize, String name) {
 		this.no = no;
 		this.userNo = userNo;
 		this.content = content;
@@ -33,8 +50,9 @@ public class GalleryVo {
 		this.orgName = orgName;
 		this.saveName = saveName;
 		this.fileSize = fileSize;
+		this.name = name;
 	}
-	
+
 	//메소드 - gs
 
 	public int getNo() {
@@ -85,19 +103,29 @@ public class GalleryVo {
 		this.saveName = saveName;
 	}
 
-	public int getFileSize() {
+	public long getFileSize() {
 		return fileSize;
 	}
 
-	public void setFileSize(int fileSize) {
+	public void setFileSize(long fileSize) {
 		this.fileSize = fileSize;
 	}
-	
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	//메소드 - 일반
 	@Override
 	public String toString() {
 		return "GalleryVo [no=" + no + ", userNo=" + userNo + ", content=" + content + ", filePath=" + filePath
-				+ ", orgName=" + orgName + ", saveName=" + saveName + ", fileSize=" + fileSize + "]";
+				+ ", orgName=" + orgName + ", saveName=" + saveName + ", fileSize=" + fileSize + ", name=" + name + "]";
 	}
+	
+	
 
 }
