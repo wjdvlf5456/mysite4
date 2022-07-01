@@ -54,15 +54,16 @@
 
 			
 					<ul id="viewArea">
-						
+						<c:forEach items="${imgList}" var="galleryVo">
 						<!-- 이미지반복영역 -->
 							<li>
 								<div class="view" >
-									<img class="imgItem" src="">
+									<img class="imgItem" src="${pageContext.request.contextPath }/upload/${galleryVo.saveName}">
 									<div class="imgWriter">작성자: <strong>유재석</strong></div>
 								</div>
 							</li>
 						<!-- 이미지반복영역 -->
+						</c:forEach>
 						
 						
 					</ul>
