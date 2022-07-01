@@ -32,6 +32,15 @@ public class UserService {
 		int count = userDao.userInsert(userVo);
 		return count;
 	}
+	
+	public int userCheck(String id) {
+		
+		
+		
+		return 1;
+	}
+	
+	
 
 	public int userDelete(int no) {
 		int count = userDao.userDelete(no);

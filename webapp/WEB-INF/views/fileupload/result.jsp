@@ -42,8 +42,14 @@
 			
 			
 			<div id="file">
+			
+			
 					<div>
-						<img id="resultImg" src="${pageContext.request.contextPath }/upload/${saveName}">
+					
+			<c:forEach items="${fileList}" var="fileVo">
+						<img id="resultImg" src="${pageContext.request.contextPath }/upload/${fileVo.saveName}">
+						<br>
+			</c:forEach>
 					</div>
 					<p>
 						<a id="btnUpload" href="${pageContext.request.contextPath }/fileupload/form"> 다시 업로드 하기 </a>

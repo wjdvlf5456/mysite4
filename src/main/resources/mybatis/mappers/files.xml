@@ -10,7 +10,7 @@
 		<result column="fileSize" property="fileSize" />
 	</resultMap>
 	
-	<select id="selectFileList">
+	<select id="selectFileList" resultMap="resultMapFileVo">
 		select 	no, 
 				orgName, 
 				saveName, 
