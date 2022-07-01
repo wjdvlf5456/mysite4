@@ -22,7 +22,6 @@ public class GalleryService {
 	
 	public List<GalleryVo> imgList(){
 		List<GalleryVo> imgList = galleryDao.imgList();
-		System.out.println(imgList);
 		return imgList;
 	}
 	
@@ -51,12 +50,8 @@ public class GalleryService {
 		
 		GalleryVo gVo = new GalleryVo(userNo,content,filePath,orgName,saveName,filesize);
 		
-		System.out.println(gVo);
-		
-		
 		//--> dao DB저장
 		galleryDao.imgInsert(gVo);
-		
 		
 		//(2)파일저장
 		try {

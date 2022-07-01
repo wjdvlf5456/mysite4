@@ -17,6 +17,11 @@ public class GalleryVo {
 		
 	}
 	
+	public GalleryVo(int no, int userNo) {
+		this.no = no;
+		this.userNo = userNo;
+	}
+	
 	public GalleryVo(int userNo, String content) {
 		this.userNo = userNo;
 		this.content = content;
@@ -30,7 +35,6 @@ public class GalleryVo {
 		this.saveName = saveName;
 		this.fileSize = fileSize;
 	}
-	
 	
 	public GalleryVo(int userNo, String content, String filePath, String orgName, String saveName, long fileSize, String name) {
 		this.userNo = userNo;

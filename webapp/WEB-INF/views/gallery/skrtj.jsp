@@ -60,8 +60,6 @@
 								<div class="view">
 									<img class="imgItem" src="${pageContext.request.contextPath }/upload/${galleryVo.saveName}">
 									<input type="hidden" name="no" value="${galleryVo.no}">
-									<input type="hidden" name="userNo" value="${galleryVo.userNo}">
-									
 									<div class="imgWriter">
 										작성자: <strong>${galleryVo.name}</strong>
 									</div>
@@ -138,7 +136,7 @@
 				<div class="modal-body">
 
 					<div class="formgroup">
-						<img id="viewModelImg" src="${pageContext.request.contextPath }/upload/${galleryVo.saveName}">
+						<img id="viewModelImg" src="">
 						<!-- ajax로 처리 : 이미지출력 위치-->
 					</div>
 
@@ -147,9 +145,7 @@
 					</div>
 
 				</div>
-				
-				
-				<form method="${pageContext.request.contextPath }/gallery/delete" action="post">
+				<form method="" action="">
 					<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 						<c:if test="${authUser.no!=null}">
@@ -181,14 +177,11 @@
 		
 		//모달창에 사진,content 띄우기
 		var no = $this.data("no");
-		var userNo = $this.data("userNo");
-		var content = $this.data("content");
-		var saveName = $this.data("saveName");
-		
+		var no = $this.data("no");
+		var no = $this.data("no");
 		$('[name="no"]').val(no);
-		$('[name="userNo"]').val(userNo);
-		$('#viewModelContent').val(content);
-		$('[name="saveName"]').val(saveName);
+		$('[name="content"]').val(no);
+		$('[name="no"]').val(no);
 		
 		//모달창 띄우기
 		$("#viewModal").modal("show");
@@ -197,10 +190,12 @@
 /*=================== 삭제 누르면 이미지 삭제됨 ===================*/
 	$("#btnDel").on("click",function(){
 		//데이터 모으기
+		var password = $('#delModal [name=password]').val();
 		var no = $('[name=no]').val();
 
 		var guestbookVo = {
 			no : no,
+			password : password
 		};
 
 		console.log(guestbookVo);

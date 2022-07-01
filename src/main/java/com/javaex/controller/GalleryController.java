@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.javaex.service.GalleryService;
@@ -26,7 +27,6 @@ public class GalleryController {
 		System.out.println("GalleryController > list");
 		
 		List<GalleryVo> imgList = galleryService.imgList();
-		System.out.println(imgList.toString());
 		model.addAttribute("imgList",imgList);
 		
 		return "gallery/list";
@@ -35,7 +35,7 @@ public class GalleryController {
 	// ================================= 사진 업로드  =================================
 	@RequestMapping(value = "/upload", method = {RequestMethod.GET, RequestMethod.POST})
 	public String imgUpload(@RequestParam("file") MultipartFile file,@RequestParam("userNo") int userNo, @RequestParam("content") String content) {
-		System.out.println("GalleryController > list");
+		System.out.println("GalleryController > upload");
 		
 		
 		GalleryVo galleryVo = new GalleryVo(userNo,content);
@@ -44,6 +44,21 @@ public class GalleryController {
 		
 		return "redirect:list";
 	}
+	
+	// ================================= 사진 업로드  =================================
+		@ResponseBody
+		@RequestMapping(value = "/delete", method = {RequestMethod.GET, RequestMethod.POST})
+		public String imgDelete(@RequestParam("file") MultipartFile file,@RequestParam("userNo") int userNo, @RequestParam("content") String content) {
+			System.out.println("GalleryController > delete");
+			
+			
+			GalleryVo galleryVo = new GalleryVo(userNo,content);
+			
+			galleryService.imgUpload(galleryVo,file);
+			
+			return "redirect:list";
+		}
+	
 	
 	
 	
