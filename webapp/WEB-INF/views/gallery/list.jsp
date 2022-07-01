@@ -48,12 +48,7 @@
 			<div id="gallery">
 				<div id="list">
 					<c:if test="${authUser!=null }">
-						<form action="${pageContext.request.contextPath }/gallery/upload" method="post" enctype="multipart/form-data">
-							<input type="file" name="file">
-							<input type="hidden" name="userNo" value="${authUser.no}">
-							<input type="text" name="content" value="">
 							<button id="btnImgUpload" type="submit">이미지올리기</button>
-						</form>
 					</c:if>
 
 					<div class="clear"></div>
@@ -100,13 +95,16 @@
 					<h4 class="modal-title">이미지등록</h4>
 				</div>
 
-				<form method="" action="">
+				<form action="${pageContext.request.contextPath }/gallery/upload" method="post" enctype="multipart/form-data">
 					<div class="modal-body">
 						<div class="form-group">
-							<label class="form-text">글작성</label> <input id="addModalContent" type="text" name="" value="">
+							<label class="form-text">글작성</label>
+							<input id="addModalContent" type="text" name="content" value="">
+							<input type="hidden" name="userNo" value="${authUser.no}"> 
 						</div>
 						<div class="form-group">
-							<label class="form-text">이미지선택</label> <input id="file" type="file" name="" value="">
+							<label class="form-text">이미지선택</label> 
+							<input id="file" type="file" name="file" >
 						</div>
 					</div>
 					<div class="modal-footer">
@@ -149,6 +147,7 @@
 				<form method="" action="">
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+
 						<button type="button" class="btn btn-danger" id="btnDel">삭제</button>
 					</div>
 
@@ -166,6 +165,9 @@
 </body>
 
 <script type="text/javascript">
+	$("#btnImgUpload").on("click",function(){
+		$("#addModal").modal("show");
+	});
 	
 </script>
 
