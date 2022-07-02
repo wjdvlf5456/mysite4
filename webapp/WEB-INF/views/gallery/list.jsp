@@ -198,6 +198,27 @@
 		$("#viewModal").modal("show");
 	});
 	
+	
+	function viewImage() {
+		var str = '';
+		str += '';
+		str += '';
+		str += '';
+		str += '';
+		str += '';
+		str += '';
+		str += '';
+		str += '';
+		str += '';
+		str += '';
+		str += '';
+		str += '';
+		str += '';
+		str += '';
+		str += '';
+		str += '';
+		
+	};
 
 </script>
 
