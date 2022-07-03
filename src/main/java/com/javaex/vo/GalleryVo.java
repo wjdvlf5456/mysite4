@@ -11,6 +11,7 @@ public class GalleryVo {
 	private String saveName;
 	private long fileSize;
 	private String name;
+	private boolean sameUser;
 	
 	//생성자
 	public GalleryVo() {
@@ -21,8 +22,9 @@ public class GalleryVo {
 		this.no = no;
 	}
 	
-	public GalleryVo(String saveName) {
+	public GalleryVo(String saveName, boolean sameUser) {
 		this.saveName = saveName;
+		this.sameUser = sameUser;
 	}
 	
 	public GalleryVo(int no, int userNo) {
@@ -66,6 +68,14 @@ public class GalleryVo {
 	}
 
 	//메소드 - gs
+
+	public boolean isSameUser() {
+		return sameUser;
+	}
+
+	public void setSameUser(boolean sameUser) {
+		this.sameUser = sameUser;
+	}
 
 	public int getNo() {
 		return no;
@@ -131,13 +141,13 @@ public class GalleryVo {
 		this.name = name;
 	}
 
-	//메소드 - 일반
 	@Override
 	public String toString() {
 		return "GalleryVo [no=" + no + ", userNo=" + userNo + ", content=" + content + ", filePath=" + filePath
-				+ ", orgName=" + orgName + ", saveName=" + saveName + ", fileSize=" + fileSize + ", name=" + name + "]";
+				+ ", orgName=" + orgName + ", saveName=" + saveName + ", fileSize=" + fileSize + ", name=" + name
+				+ ", sameUser=" + sameUser + "]";
 	}
 	
-	
+
 
 }

@@ -56,9 +56,8 @@
 
 					<ul id="viewArea">
 						<!-- 이미지반복영역 -->
-						<li>
-						<c:forEach items="${imgList}" var="galleryVo">
-								<div class="view" id="t"${galleryVo.no} >
+						<li><c:forEach items="${imgList}" var="galleryVo">
+								<div class="view" id="t" ${galleryVo.no}>
 									<img class="imgItem" src="${pageContext.request.contextPath }/upload/${galleryVo.saveName}">
 									<div class="imgWriter">
 										작성자: <strong>${galleryVo.name}</strong>
@@ -99,8 +98,9 @@
 				<form action="${pageContext.request.contextPath }/gallery/upload" method="post" enctype="multipart/form-data">
 					<div class="modal-body">
 						<div class="form-group">
-							<label class="form-text">글작성</label> <input id="addModalContent" type="text" name="content" value="">
-							 <input type="hidden" name="userNo" value="${authUser.no}">
+							<label class="form-text">글작성</label>
+							 <input id="addModalContent" type="text" name="content" value="">
+							  <input type="hidden" name="userNo" value="${authUser.no}">
 						</div>
 						<div class="form-group">
 							<label class="form-text">이미지선택</label> <input id="file" type="file" name="file">
@@ -144,13 +144,11 @@
 
 				</div>
 				<form method="${pageContext.request.contextPath }/gallery/delete" action="post">
+				<input id="authUserNo" type="hidden" value="${authUser.no}">
+				<input id="delNo" type="hidden" name="no">
 					<div class="modal-footer">
-					<input type="text" name="no">
-					<a></a>
-						<button type="button" class="btn btn-default" data-dismiss="modal" >닫기</button>
-						<c:if test="${authUser.no != userNo}">
-							<button type="button" class="btn btn-danger" id="btnDel">삭제</button>
-						</c:if>
+						<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+						<button type="button" class="btn btn-danger" id="btnDel">삭제</button>
 					</div>
 
 
@@ -173,66 +171,72 @@
 	});
 
 	/*=================== 이미지보기 창 띄우기 ===================*/
-	$("#viewArea").on("click",".imgItem",function() {
-		
-		var $this = $(this);
-		
-		console.log($this);
-		
-		//모달창에 사진,content 띄우기
-		var saveName = $this.attr("src");
-		
-		var save = saveName
-		
-		console.log(saveName);
-		console.log(save);
-		
-		var galleryVo = {
-				saveName: save
-			};
+	$("#viewArea").on("click", ".imgItem",function() {
 
-		
-		
-		$.ajax({
-			url : "${pageContext.request.contextPath}/gallery/getImageInfo",
-			type : "post",
-			contentType: "application/json",
-			data : JSON.stringify(galleryVo),
+					var $this = $(this);
 
-			dataType : "json",
-			success : function(gVo) {
-				//성공시 출력할 코드
-				console.log(gVo);
-				console.log(gVo.no);
-				
-				$('[name="no"]').val(gVo.no);
-				$('[data-no]').val(gVo.no);
-				$('[name="userNo"]').val(gVo.userNo);
-				$('#viewModelContent').val(gVo.content); 
-				$('#viewModelImg').attr("src","${pageContext.request.contextPath}/upload/"+gVo.saveName);
+					console.log($this);
 
-				//모달창 띄우기
-				$("#viewModal").modal("show");
+					//모달창에 사진,content 띄우기
+					var saveName = $this.attr("src");
 
-			},
-			error : function(XHR, status, error) {
-				console.error(status + " : " + error);
-			}
-		});
-		// ajax 
-		
-		
-	});
-	
-	
+					var save = saveName;
+
+					var authUser = parseInt($("#authUserNo").val());
+
+					console.log(saveName);
+					console.log(save);
+
+					var galleryVo = {
+						saveName : save, 
+						userNo :authUser
+					};
+					console.log(galleryVo);
+					$.ajax({
+								url : "${pageContext.request.contextPath}/gallery/getImageInfo",
+								type : "post",
+								contentType : "application/json",
+								data : JSON.stringify(galleryVo),
+
+								dataType : "json",
+								success : function(gVo) {
+									//성공시 출력할 코드
+									console.log(gVo);
+									console.log(gVo.sameUser);
+
+									$('[name="no"]').val(gVo.no);
+									if (gVo.sameUser == true) {
+										$("#btnDel").show();
+									} else if(gVo.sameUser == false){
+										$("#btnDel").hide();
+									}
+
+									$('#viewModelContent').val(gVo.content);
+									$('#viewModelImg').attr(
+											"src",
+											"${pageContext.request.contextPath}/upload/"
+													+ gVo.saveName);
+
+									//모달창 띄우기
+									$("#viewModal").modal("show");
+
+								},
+								error : function(XHR, status, error) {
+									console.error(status + " : " + error);
+								}
+							});
+					// ajax 
+
+				});
+
 	/* 모달창 삭제버튼 클릭할 때 */
-	$("#viewModal").on("click","#btnDel", function() {
+	$("#viewModal").on("click", "#btnDel", function() {
 		console.log("모달창 삭제버튼 클릭");
 
 		//데이터 모으기
 		var $this = $(this);
-		//var no = $this.data('no');
-		var no = Number(1);
+		
+		var no = $("#delNo").val();
 
 		var galleryVo = {
 			no : no
@@ -243,7 +247,7 @@
 		$.ajax({
 			url : "${pageContext.request.contextPath}/gallery/delete",
 			type : "post",
-			contentType: "application/json",
+			contentType : "application/json",
 			data : JSON.stringify(galleryVo),
 
 			dataType : "json",
@@ -264,9 +268,6 @@
 		// ajax 
 
 	});
-	
-	
-
 </script>
 
 

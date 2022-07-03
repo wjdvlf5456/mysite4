@@ -35,7 +35,18 @@ public class GalleryService {
 		saveName = saveName.replaceAll("/", "");
 		System.out.println(saveName);
 		
-		return galleryDao.getImageInfo(saveName);
+		GalleryVo gVo = galleryDao.getImageInfo(saveName);
+		
+		System.out.println(galleryVo.getUserNo());
+		System.out.println(gVo.getUserNo());
+		
+		if (galleryVo.getUserNo()==gVo.getUserNo()) {
+			gVo.setSameUser(true);
+		} else {
+			gVo.setSameUser(false);
+		}
+		
+		return gVo;
 	};
 	
 	
