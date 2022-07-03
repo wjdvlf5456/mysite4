@@ -26,7 +26,14 @@ public class GalleryService {
 	
 	}
 	
-	public GalleryVo getImageInfo(String saveName){
+	public GalleryVo getImageInfo(GalleryVo galleryVo){
+		
+		String saveName = galleryVo.getSaveName();
+		
+		
+		saveName = saveName.substring(saveName.lastIndexOf("/")); 
+		saveName = saveName.replaceAll("/", "");
+		System.out.println(saveName);
 		
 		return galleryDao.getImageInfo(saveName);
 	};
@@ -77,8 +84,10 @@ public class GalleryService {
 		
 	}
 	
-	public String imgDelete(int no) {
+	public String imgDelete(GalleryVo galleryVo) {
+		int no = galleryVo.getNo();
 		String success = galleryDao.imgDelete(no);
+		System.out.println(no + "번");
 		
 		return success;
 	};

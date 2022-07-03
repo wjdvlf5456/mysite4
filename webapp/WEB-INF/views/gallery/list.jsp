@@ -58,7 +58,7 @@
 						<!-- 이미지반복영역 -->
 						<li>
 						<c:forEach items="${imgList}" var="galleryVo">
-								<div class="view">
+								<div class="view" id="t"${galleryVo.no} >
 									<img class="imgItem" src="${pageContext.request.contextPath }/upload/${galleryVo.saveName}">
 									<div class="imgWriter">
 										작성자: <strong>${galleryVo.name}</strong>
@@ -139,16 +139,16 @@
 					</div>
 
 					<div class="formgroup">
-						<p id="viewModelContent">content 위치</p>
+						<p id="viewModelContent"></p>
 					</div>
 
 				</div>
 				<form method="${pageContext.request.contextPath }/gallery/delete" action="post">
 					<div class="modal-footer">
-					<input type="hidden" name="no" value=1>
-					<a href="${pageContext.request.contextPath }/gallery/list"></a>
+					<input type="text" name="no">
+					<a></a>
 						<button type="button" class="btn btn-default" data-dismiss="modal" >닫기</button>
-						<c:if test="${authUser.no == userNo}">
+						<c:if test="${authUser.no != userNo}">
 							<button type="button" class="btn btn-danger" id="btnDel">삭제</button>
 						</c:if>
 					</div>
@@ -181,10 +181,14 @@
 		
 		//모달창에 사진,content 띄우기
 		var saveName = $this.attr("src");
+		
+		var save = saveName
+		
 		console.log(saveName);
+		console.log(save);
 		
 		var galleryVo = {
-				saveName: saveName 
+				saveName: save
 			};
 
 		
@@ -199,11 +203,13 @@
 			success : function(gVo) {
 				//성공시 출력할 코드
 				console.log(gVo);
+				console.log(gVo.no);
 				
 				$('[name="no"]').val(gVo.no);
+				$('[data-no]').val(gVo.no);
 				$('[name="userNo"]').val(gVo.userNo);
-				$('#viewModelContent').val(gVo.content);
-				$('#viewModelImg').attr("src",saveName);
+				$('#viewModelContent').val(gVo.content); 
+				$('#viewModelImg').attr("src","${pageContext.request.contextPath}/upload/"+gVo.saveName);
 
 				//모달창 띄우기
 				$("#viewModal").modal("show");
@@ -220,14 +226,13 @@
 	
 	
 	/* 모달창 삭제버튼 클릭할 때 */
-	$("#btnDel").on("click", function() {
+	$("#viewModal").on("click","#btnDel", function() {
 		console.log("모달창 삭제버튼 클릭");
 
 		//데이터 모으기
 		var $this = $(this);
-		var no = Number($this.data("no"));
-		
-		
+		//var no = $this.data('no');
+		var no = Number(1);
 
 		var galleryVo = {
 			no : no
@@ -249,9 +254,6 @@
 				if (result == "true") {
 					$("#t" + no).remove();
 					$("#viewModal").modal("hide");
-
-				} else {
-					alert("비밀번호가 틀립니다.");
 				}
 
 			},

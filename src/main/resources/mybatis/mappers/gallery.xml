@@ -33,9 +33,10 @@
 		<![CDATA[
 		select 	no, 
 				user_no, 
-				content 
+				content, 
+				save_name 
 		from gallery 
-		where saveName = #{saveName}	
+		where save_name like #{saveName}	
 		]]>
 	</select>
 	

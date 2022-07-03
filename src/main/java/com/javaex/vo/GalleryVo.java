@@ -21,6 +21,10 @@ public class GalleryVo {
 		this.no = no;
 	}
 	
+	public GalleryVo(String saveName) {
+		this.saveName = saveName;
+	}
+	
 	public GalleryVo(int no, int userNo) {
 		this.no = no;
 		this.userNo = userNo;
