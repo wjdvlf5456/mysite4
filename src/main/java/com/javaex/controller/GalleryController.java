@@ -32,6 +32,19 @@ public class GalleryController {
 		return "gallery/list";
 	}
 	
+	// ================================= 갤러리 메인(모달) =================================
+	@ResponseBody
+	@RequestMapping(value = "/getImageInfo", method = {RequestMethod.GET, RequestMethod.POST})
+	public GalleryVo getImageInfo(@RequestParam("saveName")String saveName) {
+		System.out.println("GalleryController > list");
+		System.out.println(saveName);
+		
+		GalleryVo gVo = galleryService.getImageInfo(saveName);
+		System.out.println(gVo);
+		
+		return gVo;
+	}
+	
 	// ================================= 사진 업로드  =================================
 	@RequestMapping(value = "/upload", method = {RequestMethod.GET, RequestMethod.POST})
 	public String imgUpload(@RequestParam("file") MultipartFile file,@RequestParam("userNo") int userNo, @RequestParam("content") String content) {
@@ -45,7 +58,7 @@ public class GalleryController {
 		return "redirect:list";
 	}
 	
-	// ================================= 사진 업로드  =================================
+	// ================================= 사진 삭제  =================================
 		@ResponseBody
 		@RequestMapping(value = "/delete", method = {RequestMethod.GET, RequestMethod.POST})
 		public String imgDelete(@RequestParam("no") int no) {

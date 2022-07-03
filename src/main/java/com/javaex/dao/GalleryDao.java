@@ -20,15 +20,21 @@ public class GalleryDao {
 		return imgList;
 	};
 	
+	public GalleryVo getImageInfo(String saveName) {
+		
+		return sqlSession.selectOne("gallery.selectImg",saveName);
+	};
+	
+	
 	public String imgInsert(GalleryVo galleryVo) {
 		int count = sqlSession.insert("gallery.imgInsert",galleryVo);
 		
 		return count + "건을 업로딩하였습니다.";
-	}
+	};
 	
 	public String imgDelete(int no) {
 		int count = sqlSession.delete("gallery.imgDelete",no);
 		return "true";
-	}
+	};
 
 }

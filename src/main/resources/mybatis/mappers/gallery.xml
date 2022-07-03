@@ -29,6 +29,18 @@
 		]]>
 	</select>
 	
+	<select id="selectImg" parameterType="String" resultMap="resultMapGalleryVo">
+		<![CDATA[
+		select 	no, 
+				user_no, 
+				content 
+		from gallery 
+		where saveName = #{saveName}	
+		]]>
+	</select>
+	
+	
+	
 	<insert id="imgInsert" parameterType="GalleryVo">
 		<![CDATA[
 			insert into gallery 

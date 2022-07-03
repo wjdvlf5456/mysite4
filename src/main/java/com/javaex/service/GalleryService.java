@@ -23,7 +23,14 @@ public class GalleryService {
 	public List<GalleryVo> imgList(){
 		List<GalleryVo> imgList = galleryDao.imgList();
 		return imgList;
+	
 	}
+	
+	public GalleryVo getImageInfo(String saveName){
+		
+		return galleryDao.getImageInfo(saveName);
+	};
+	
 	
 	public String imgUpload(GalleryVo galleryVo, MultipartFile file) {
 		String saveDir = "/Users/choijungphil/javaStudy/upload";
