@@ -65,6 +65,7 @@ public class ApiBoardController {
 	// ============================ 게시판 새글등록 (jstl) ============================
 	@RequestMapping(value = "/write", method = {RequestMethod.GET,RequestMethod.POST})
 	public String rWrite(@ModelAttribute RboardVo rboardVo) {
+		System.out.println(rboardVo);
 		
 		int count = rboardService.insertNewBorad(rboardVo);
 		System.out.println(count+"건을 등록하였습니다.");
@@ -73,12 +74,12 @@ public class ApiBoardController {
 	};
 	
 	// ============================ 게시판 답글등록폼 (jstl) ============================
-	@RequestMapping(value = "/reqWriteForm", method = {RequestMethod.GET,RequestMethod.POST})
-	public String reqWriteForm(@ModelAttribute RboardVo rboardVo, Model model) {
+	@RequestMapping(value = "/reqWriteForm/{no}", method = {RequestMethod.GET,RequestMethod.POST})
+	public String reqWriteForm(@PathVariable("no") int no, Model model) {
 		System.out.println("ApiBoardController > reqWriteForm");
-		System.out.println(rboardVo);
+		System.out.println(no);
 		
-		RboardVo rVo = rboardService.getRboard(rboardVo.getNo());
+		RboardVo rVo = rboardService.getRboard(no);
 		
 		model.addAttribute("rVo",rVo);
 		System.out.println(rVo);

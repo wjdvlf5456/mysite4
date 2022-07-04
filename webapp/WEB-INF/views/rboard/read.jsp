@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>${boardVo.no }번 게시판 글 읽기</title>
+<title>${rboardVo.no }번 게시판 글 읽기</title>
 <link href="${pageContext.request.contextPath}/assets/css/mysite.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/assets/css/board.css" rel="stylesheet" type="text/css">
 
@@ -65,8 +65,8 @@
 								<span class="form-text">제 목</span>
 								<span class="form-value">${rboardVo.title }</span>
 							</div>
-						
-							<input type="hidden" name="no" value="${rboardVo.no}">
+							<p>
+							</p>
 							<!-- 내용 -->
 							<div id="txt-content">
 								<span class="form-value" >
@@ -74,7 +74,7 @@
 								</span>
 							</div>
 							<c:if test="${authUser != null}">
-							<a id="btn_modify" href="${pageContext.request.contextPath}/api/rboard/reqWriteForm">답글 달기</a>
+							<a id="btn_modify" href="${pageContext.request.contextPath}/api/rboard/reqWriteForm/${rboardVo.no}">답글 달기</a>
 							</c:if>
 							<c:if test="${authUser.no == rboardVo.userNo}">
 							<a id="btn_modify" href="${pageContext.request.contextPath}/api/rboard/modifyForm/${rboardVo.no}">수정</a>

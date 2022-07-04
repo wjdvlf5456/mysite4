@@ -52,16 +52,14 @@ public class RboardService {
 		int dd = rboardVo.getDepth();
 		System.out.println(dd);
 		
-		String str = "";
-		for (int i = dd; i >=0; i++) {
-			str += "\t";
-		}
 		String title = rboardVo.getTitle();
 		
-		rboardVo.setTitle(str+title);
-		
 		rboardVo.setGroupNo(rVo.getGroupNo());
-		rboardVo.setOrderNo(rVo.getOrderNo()+1);
+		
+		
+		int orderNo = rVo.getOrderNo()+1;
+		System.out.println(orderNo);
+		rboardVo.setOrderNo(orderNo);
 		
 		int count = rboardDao.insertNewBoard(rboardVo);
 		

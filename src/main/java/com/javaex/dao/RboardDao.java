@@ -43,6 +43,10 @@ public class RboardDao {
 		int count = sqlSession.insert("rboard.insertNewBoard",rboardVo);
 		return count;
 	}
+	public int insertReqBoard(RboardVo rboardVo) {
+		int count = sqlSession.insert("rboard.insertReqBoard",rboardVo);
+		return count;
+	}
 	
 	
 	
