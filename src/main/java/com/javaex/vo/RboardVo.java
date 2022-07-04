@@ -18,6 +18,9 @@ public class RboardVo {
 	public RboardVo() {
 		
 	}
+	public RboardVo(int no) {
+		this.no = no;
+	}
 	public RboardVo(int no, int userNo, String title, String content, int hit, String regDate, int groupNo, int orderNo,int depth, String name) {
 		this.no = no;
 		this.userNo = userNo;

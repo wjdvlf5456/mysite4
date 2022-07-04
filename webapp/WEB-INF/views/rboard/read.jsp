@@ -45,37 +45,40 @@
 							<!-- 작성자 -->
 							<div class="form-group">
 								<span class="form-text">작성자</span>
-								<span class="form-value">${boardVo.name }</span>
+								<span class="form-value">${rboardVo.name }</span>
 							</div>
 							
 							<!-- 조회수 -->
 							<div class="form-group">
 								<span class="form-text">조회수</span>
-								<span class="form-value">${boardVo.hit }</span>
+								<span class="form-value">${rboardVo.hit }</span>
 							</div>
 							
 							<!-- 작성일 -->
 							<div class="form-group">
 								<span class="form-text">작성일</span>
-								<span class="form-value">${boardVo.regDate }</span>
+								<span class="form-value">${rboardVo.regDate }</span>
 							</div>
 							
 							<!-- 제목 -->
 							<div class="form-group">
 								<span class="form-text">제 목</span>
-								<span class="form-value">${boardVo.title }</span>
+								<span class="form-value">${rboardVo.title }</span>
 							</div>
 						
 							<!-- 내용 -->
 							<div id="txt-content">
 								<span class="form-value" >
-									${boardVo.content }<br>
+									${rboardVo.content }<br>
 								</span>
 							</div>
-							<c:if test="${authUser.no==boardVo.userNo }">
-							<a id="btn_modify" href="${pageContext.request.contextPath}/board/modifyForm/${boardVo.no}">수정</a>
+							<c:if test="${authUser != null}">
+							<a id="btn_modify" href="${pageContext.request.contextPath}/api/rboard/writeFrom/${rboardVo.no}">답글 달기</a>
 							</c:if>
-							<a id="btn_modify" href="${pageContext.request.contextPath}/board/list">목록</a>
+							<c:if test="${authUser.no == rboardVo.userNo}">
+							<a id="btn_modify" href="${pageContext.request.contextPath}/api/rboard/modifyForm/${rboardVo.no}">수정</a>
+							</c:if>
+							<a id="btn_modify" href="${pageContext.request.contextPath}/api/rboard/list">목록</a>
 							
 						</form>
 						<!-- //form -->
