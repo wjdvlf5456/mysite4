@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시판 글 수정</title>
+<title>${boardVo.no }번 게시판 글 읽기</title>
 <link href="${pageContext.request.contextPath}/assets/css/mysite.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/assets/css/board.css" rel="stylesheet" type="text/css">
 
@@ -21,6 +21,7 @@
 
 		<div id="container" class="clearfix">
 		<c:import url="/WEB-INF/views/includes/boardAside.jsp"></c:import>
+
 			<!-- //aside -->
 
 			<div id="content">
@@ -39,9 +40,8 @@
 				<!-- //content-head -->
 	
 				<div id="board">
-					<div id="modifyForm">
-						<form action="${pageContext.request.contextPath}/board/modify" method="get">
-						<input type="hidden" name="no" value="${boardVo.no }">
+					<div id="read">
+						<form action="" method="get">
 							<!-- 작성자 -->
 							<div class="form-group">
 								<span class="form-text">작성자</span>
@@ -62,24 +62,25 @@
 							
 							<!-- 제목 -->
 							<div class="form-group">
-								<label class="form-text" for="txt-title">제목</label>
-								<input type="text" id="txt-title" name="title" value="${boardVo.title }">
+								<span class="form-text">제 목</span>
+								<span class="form-value">${boardVo.title }</span>
 							</div>
-						
-							
 						
 							<!-- 내용 -->
-							<div class="form-group">
-								<textarea id="txt-content" name="content">${boardVo.content }</textarea>
+							<div id="txt-content">
+								<span class="form-value" >
+									${boardVo.content }<br>
+								</span>
 							</div>
-							
-							<a id="btn_cancel" href="${pageContext.request.contextPath}/board/list">취소</a>
-							<button id="btn_modify" type="submit" >수정</button>
+							<c:if test="${authUser.no==boardVo.userNo }">
+							<a id="btn_modify" href="${pageContext.request.contextPath}/board/modifyForm/${boardVo.no}">수정</a>
+							</c:if>
+							<a id="btn_modify" href="${pageContext.request.contextPath}/board/list">목록</a>
 							
 						</form>
 						<!-- //form -->
 					</div>
-					<!-- //modifyForm -->
+					<!-- //read -->
 				</div>
 				<!-- //board -->
 			</div>
@@ -98,3 +99,4 @@
 </body>
 
 </html>
+

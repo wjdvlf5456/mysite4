@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시판 글 수정</title>
+<title>게시판 작성</title>
 <link href="${pageContext.request.contextPath}/assets/css/mysite.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/assets/css/board.css" rel="stylesheet" type="text/css">
 
@@ -14,13 +14,13 @@
 
 <body>
 	<div id="wrap">
-
 		<!-- header -->
 		<c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
 		<!-- //header -->
 
 		<div id="container" class="clearfix">
 		<c:import url="/WEB-INF/views/includes/boardAside.jsp"></c:import>
+
 			<!-- //aside -->
 
 			<div id="content">
@@ -39,51 +39,31 @@
 				<!-- //content-head -->
 	
 				<div id="board">
-					<div id="modifyForm">
-						<form action="${pageContext.request.contextPath}/board/modify" method="get">
-						<input type="hidden" name="no" value="${boardVo.no }">
-							<!-- 작성자 -->
-							<div class="form-group">
-								<span class="form-text">작성자</span>
-								<span class="form-value">${boardVo.name }</span>
-							</div>
-							
-							<!-- 조회수 -->
-							<div class="form-group">
-								<span class="form-text">조회수</span>
-								<span class="form-value">${boardVo.hit }</span>
-							</div>
-							
-							<!-- 작성일 -->
-							<div class="form-group">
-								<span class="form-text">작성일</span>
-								<span class="form-value">${boardVo.regDate }</span>
-							</div>
-							
+					<div id="writeForm">
+						<form action="${pageContext.request.contextPath}/board/write" method="post">
 							<!-- 제목 -->
 							<div class="form-group">
 								<label class="form-text" for="txt-title">제목</label>
-								<input type="text" id="txt-title" name="title" value="${boardVo.title }">
+								<input type="text" id="txt-title" name="title" value="" placeholder="제목을 입력해 주세요">
 							</div>
-						
-							
 						
 							<!-- 내용 -->
 							<div class="form-group">
-								<textarea id="txt-content" name="content">${boardVo.content }</textarea>
+								<textarea id="txt-content" name="content"></textarea>
 							</div>
-							
+							<input type="hidden" name="userNo" value="${authUser.no}">
 							<a id="btn_cancel" href="${pageContext.request.contextPath}/board/list">취소</a>
-							<button id="btn_modify" type="submit" >수정</button>
+							<button id="btn_add" type="submit" >등록</button>
 							
 						</form>
 						<!-- //form -->
 					</div>
-					<!-- //modifyForm -->
+					<!-- //writeForm -->
 				</div>
 				<!-- //board -->
 			</div>
 			<!-- //content  -->
+
 
 		</div>
 		<!-- //container  -->
@@ -98,3 +78,4 @@
 </body>
 
 </html>
+

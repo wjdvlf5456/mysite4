@@ -8,7 +8,10 @@
 <title>게시판 목록</title>
 <link href="${pageContext.request.contextPath}/assets/css/mysite.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/assets/css/board.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath }/assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
 
+<script type="text/javascript" src="${pageContext.request.contextPath }/assets/js/jquery/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/assets/bootstrap/js/bootstrap.js"></script>
 </head>
 
 
@@ -20,10 +23,9 @@
 		<!-- //header -->
 
 		<div id="container" class="clearfix">
-		
-		<c:import url="/WEB-INF/views/includes/boardAside.jsp"></c:import>
-		<!-- //aside -->
 
+		<c:import url="/WEB-INF/views/includes/boardAside.jsp"></c:import>
+		
 			<div id="content">
 
 				<div id="content-head">
@@ -39,9 +41,9 @@
 				</div>
 				<!-- //content-head -->
 
-				<div id="board">
+				<div id="rboard">
 					<div id="list">
-						<form action="${pageContext.request.contextPath}/board/list" method="get">
+						<form action="${pageContext.request.contextPath}/rboard/list" method="get">
 							<div class="form-group text-right">
 								<input type="text" name="keyword" value="">
 								<button type="submit" id=btn_search>검색</button>
@@ -58,16 +60,16 @@
 									<th>관리</th>
 								</tr>
 							</thead>
-							<c:forEach items="${boardList}" var="boardVo" varStatus="status">
+							<c:forEach items="${rboardList}" var="rboardVo" varStatus="status">
 							<tbody>
 								<tr>
 									<td>${status.count }</td>
-									<td class="text-left"><a href="${pageContext.request.contextPath}/board/read/${boardVo.no}">${boardVo.title }</a></td>
-									<td>${boardVo.name}</td>
-									<td>${boardVo.hit }</td>
-									<td>${boardVo.regDate }</td>
-									<c:if test="${authUser.no==boardVo.userNo }">
-									<td><a href="${pageContext.request.contextPath}/board/delete/${boardVo.no}">[삭제]</a></td>
+									<td class="text-left"><a href="${pageContext.request.contextPath}/rboard/read/${rboardVo.no}">${rboardVo.title }</a></td>
+									<td>${rboardVo.name}</td>
+									<td>${rboardVo.hit }</td>
+									<td>${rboardVo.regDate }</td>
+									<c:if test="${authUser.no==rboardVo.userNo }">
+									<td><a href="${pageContext.request.contextPath}/rboard/delete/${rboardVo.no}">[삭제]</a></td>
 									</c:if>
 								</tr>
 							</tbody>
@@ -94,13 +96,13 @@
 							<div class="clear"></div>
 						</div>
 						<c:if test="${authUser!=null }">
-						<a id="btn_write" href="${pageContext.request.contextPath}/board/writeForm">글쓰기</a>
+						<a id="btn_write" href="${pageContext.request.contextPath}/rboard/writeForm">글쓰기</a>
 						</c:if>
 
 					</div>
 					<!-- //list -->
 				</div>
-				<!-- //board -->
+				<!-- //rboard -->
 			</div>
 			<!-- //content  -->
 

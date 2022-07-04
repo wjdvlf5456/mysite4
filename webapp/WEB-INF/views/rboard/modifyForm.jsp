@@ -21,6 +21,7 @@
 
 		<div id="container" class="clearfix">
 		<c:import url="/WEB-INF/views/includes/boardAside.jsp"></c:import>
+
 			<!-- //aside -->
 
 			<div id="content">
