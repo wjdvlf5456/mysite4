@@ -12,13 +12,14 @@ public class RboardVo {
 	private int groupNo;
 	private int orderNo;
 	private int depth;
+	private String name;
 
 	//생성자
 	public RboardVo() {
 		
 	}
 	
-	public RboardVo(int no, int userNo, String title, String content, int hit, String regDate, int groupNo, int orderNo,int depth) {
+	public RboardVo(int no, int userNo, String title, String content, int hit, String regDate, int groupNo, int orderNo,int depth, String name) {
 		this.no = no;
 		this.userNo = userNo;
 		this.title = title;
@@ -28,8 +29,9 @@ public class RboardVo {
 		this.groupNo = groupNo;
 		this.orderNo = orderNo;
 		this.depth = depth;
+		this.name = name;
 	}
-	
+
 	//메소드 - gs
 	public int getNo() {
 		return no;
@@ -85,13 +87,13 @@ public class RboardVo {
 	public void setDepth(int depth) {
 		this.depth = depth;
 	}
-	
+
 	//메소드 - 일반
 	@Override
 	public String toString() {
 		return "RboardVo [no=" + no + ", userNo=" + userNo + ", title=" + title + ", content=" + content + ", hit="
 				+ hit + ", regDate=" + regDate + ", groupNo=" + groupNo + ", orderNo=" + orderNo + ", depth=" + depth
-				+ "]";
+				+ ", name=" + name + "]";
 	}
-
+	
 }

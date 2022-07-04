@@ -49,7 +49,9 @@
 								<button type="submit" id=btn_search>검색</button>
 							</div>
 						</form>
-						<table>
+						
+						<div id="listArea"></div>
+<%--						<table>
 							<thead>
 								<tr>
 									<th>번호</th>
@@ -60,7 +62,7 @@
 									<th>관리</th>
 								</tr>
 							</thead>
-							<c:forEach items="${rboardList}" var="rboardVo" varStatus="status">
+ 							<c:forEach items="${rboardList}" var="rboardVo" varStatus="status">
 							<tbody>
 								<tr>
 									<td>${status.count }</td>
@@ -73,8 +75,9 @@
 									</c:if>
 								</tr>
 							</tbody>
-							</c:forEach>
+							</c:forEach> 
 						</table>
+							--%>
 
 						<div id="paging">
 							<ul>
@@ -117,6 +120,47 @@
 	<!-- //wrap -->
 
 </body>
+<script type="text/javascript">
+$(document).ready(function() {
+	console.log("jquery로 데이터 받기");
+	fetchList();
+	
+});
+
+// 리스트 요청
+function fetchList() {
+	$.ajax({
+		url : "${pageContext.request.contextPath}/api/board/getlist",
+		type : "post",
+		//contentType: "application/json",
+		//data : {name: ”홍길동"},
+
+		dataType : "json",
+		success : function(rboardList) {
+			/*성공시 처리해야될 코드 작성*/
+			console.log(guestList);
+			//화면에 data + html을 그린다.
+			for (var i = 0; i < rboardList.length; i++) {
+				render(rboardList[i], "down");
+			}
+
+		},
+		error : function(XHR, status, error) {
+			console.error(status + " : " + error);
+		}
+
+	})
+
+}
+
+function render() {
+	
+	
+};
+
+
+
+</script>
 
 </html>
 
