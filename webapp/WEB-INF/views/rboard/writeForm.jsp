@@ -19,9 +19,9 @@
 		<!-- //header -->
 
 		<div id="container" class="clearfix">
+		
 		<c:import url="/WEB-INF/views/includes/boardAside.jsp"></c:import>
-
-			<!-- //aside -->
+		<!-- //aside -->
 
 			<div id="content">
 
@@ -40,7 +40,7 @@
 	
 				<div id="board">
 					<div id="writeForm">
-						<form action="${pageContext.request.contextPath}/api/rboard/write" method="post">
+						<form action="${pageContext.request.contextPath}/rboard/write" method="post">
 							<!-- 제목 -->
 							<div class="form-group">
 								<label class="form-text" for="txt-title">제목</label>
@@ -51,8 +51,11 @@
 							<div class="form-group">
 								<textarea id="txt-content" name="content"></textarea>
 							</div>
+							<c:if test="${rboardVo!=null}">
+							<input type="hidden" name="no" value="${rboardVo.no}">
+							</c:if>
 							<input type="hidden" name="userNo" value="${authUser.no}">
-							<a id="btn_cancel" href="${pageContext.request.contextPath}/api/board/list">취소</a>
+							<a id="btn_cancel" href="${pageContext.request.contextPath}/rboard/list">취소</a>
 							<button id="btn_add" type="submit" >등록</button>
 							
 						</form>

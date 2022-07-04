@@ -21,6 +21,17 @@ public class RboardVo {
 	public RboardVo(int no) {
 		this.no = no;
 	}
+	public RboardVo(int no, int userNo, String title, String content, String regDate, int groupNo, int orderNo,int depth, String name) {
+		this.no = no;
+		this.userNo = userNo;
+		this.title = title;
+		this.content = content;
+		this.regDate = regDate;
+		this.groupNo = groupNo;
+		this.orderNo = orderNo;
+		this.depth = depth;
+		this.name = name;
+	}
 	public RboardVo(int no, int userNo, String title, String content, int hit, String regDate, int groupNo, int orderNo,int depth, String name) {
 		this.no = no;
 		this.userNo = userNo;

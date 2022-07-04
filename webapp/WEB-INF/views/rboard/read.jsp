@@ -20,8 +20,8 @@
 		<!-- //header -->
 
 		<div id="container" class="clearfix">
+		
 		<c:import url="/WEB-INF/views/includes/boardAside.jsp"></c:import>
-
 			<!-- //aside -->
 
 			<div id="content">
@@ -41,7 +41,7 @@
 	
 				<div id="board">
 					<div id="read">
-						<form action="${pageContext.request.contextPath}/api/rboard/reqWriteForm" method="get">
+						<form action="" method="get">
 							<!-- 작성자 -->
 							<div class="form-group">
 								<span class="form-text">작성자</span>
@@ -65,21 +65,22 @@
 								<span class="form-text">제 목</span>
 								<span class="form-value">${rboardVo.title }</span>
 							</div>
-							<p>
-							</p>
+						
 							<!-- 내용 -->
 							<div id="txt-content">
 								<span class="form-value" >
 									${rboardVo.content }<br>
 								</span>
 							</div>
+							
 							<c:if test="${authUser != null}">
-							<a id="btn_modify" href="${pageContext.request.contextPath}/api/rboard/reqWriteForm/${rboardVo.no}">답글 달기</a>
+							<a id="btn_modify" href="${pageContext.request.contextPath}/rboard/reqWriteForm/${rboardVo.no}">답글 달기</a>
 							</c:if>
-							<c:if test="${authUser.no == rboardVo.userNo}">
-							<a id="btn_modify" href="${pageContext.request.contextPath}/api/rboard/modifyForm/${rboardVo.no}">수정</a>
+							
+							<c:if test="${authUser.no==rboardVo.userNo }">
+							<a id="btn_modify" href="${pageContext.request.contextPath}/rboard/modifyForm/${rboardVo.no}">수정</a>
 							</c:if>
-							<a id="btn_modify" href="${pageContext.request.contextPath}/api/rboard/list">목록</a>
+							<a id="btn_modify" href="${pageContext.request.contextPath}/rboard/list">목록</a>
 							
 						</form>
 						<!-- //form -->
