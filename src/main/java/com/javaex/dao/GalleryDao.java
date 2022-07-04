@@ -20,9 +20,10 @@ public class GalleryDao {
 		return imgList;
 	};
 	
-	public GalleryVo getImageInfo(String saveName) {
+	public GalleryVo getImageInfo(GalleryVo galleryVo) {
+		System.out.println("다오: "+galleryVo);
 		
-		return sqlSession.selectOne("gallery.selectImg",saveName);
+		return sqlSession.selectOne("gallery.selectImg",galleryVo);
 	};
 	
 	

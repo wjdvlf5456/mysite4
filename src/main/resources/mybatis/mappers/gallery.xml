@@ -29,14 +29,13 @@
 		]]>
 	</select>
 	
-	<select id="selectImg" parameterType="String" resultMap="resultMapGalleryVo">
+	<select id="selectImg" parameterType="GalleryVo" resultMap="resultMapGalleryVo">
 		<![CDATA[
 		select 	no, 
 				user_no, 
 				content, 
-				save_name 
-		from gallery 
-		where save_name like #{saveName}	
+				file_path, 
+				save_name from gallery where save_name like #{saveName} or no = #{no}
 		]]>
 	</select>
 	
