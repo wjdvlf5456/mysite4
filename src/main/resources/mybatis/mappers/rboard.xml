@@ -12,6 +12,7 @@
 		<result column="group_no" property="groupNo" />
 		<result column="order_no" property="orderNo" />
 		<result column="depth" property="depth" />
+		<result column="name" property="name" />
 	</resultMap>
 
 	<!-- 목록 -->
@@ -20,12 +21,13 @@
 		select 	r.no, 
 				r.user_no, 
 				r.title, 
+				r.content, 
 				r.hit, 
 		        to_char(r.reg_date,'yy-mm-dd hh:mi') regDate, 
 				r.group_no, 
 				r.order_no, 
 				r.depth, 
-				u.name  
+				u.name 
 		from users u left outer join rboard r on r.user_no=u.no 
 		where not r.no is null 
 		order by group_no desc, order_no asc

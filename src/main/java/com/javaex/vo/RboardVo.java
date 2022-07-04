@@ -18,7 +18,6 @@ public class RboardVo {
 	public RboardVo() {
 		
 	}
-	
 	public RboardVo(int no, int userNo, String title, String content, int hit, String regDate, int groupNo, int orderNo,int depth, String name) {
 		this.no = no;
 		this.userNo = userNo;
@@ -32,60 +31,85 @@ public class RboardVo {
 		this.name = name;
 	}
 
-	//메소드 - gs
+
 	public int getNo() {
 		return no;
 	}
+
 	public void setNo(int no) {
 		this.no = no;
 	}
+
 	public int getUserNo() {
 		return userNo;
 	}
+
 	public void setUserNo(int userNo) {
 		this.userNo = userNo;
 	}
+
 	public String getTitle() {
 		return title;
 	}
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
 	public String getContent() {
 		return content;
 	}
+
 	public void setContent(String content) {
 		this.content = content;
 	}
+
 	public int getHit() {
 		return hit;
 	}
+
 	public void setHit(int hit) {
 		this.hit = hit;
 	}
+
 	public String getRegDate() {
 		return regDate;
 	}
+
 	public void setRegDate(String regDate) {
 		this.regDate = regDate;
 	}
+
 	public int getGroupNo() {
 		return groupNo;
 	}
+
 	public void setGroupNo(int groupNo) {
 		this.groupNo = groupNo;
 	}
+
 	public int getOrderNo() {
 		return orderNo;
 	}
+
 	public void setOrderNo(int orderNo) {
 		this.orderNo = orderNo;
 	}
+
 	public int getDepth() {
 		return depth;
 	}
+
 	public void setDepth(int depth) {
 		this.depth = depth;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	//메소드 - 일반
