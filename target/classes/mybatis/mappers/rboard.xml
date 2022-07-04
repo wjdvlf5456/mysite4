@@ -75,7 +75,7 @@
 	<insert id="insertNewBoard" parameterType="RboardVo">
 		<![CDATA[
 		insert into rboard(no,user_no,title,content,reg_date,group_no)
-		values (seq_rboard_no.nextval, #{userNo},#{title},#{content},sysdate,#{groupNo});
+		values (seq_rboard_no.nextval, #{userNo},#{title},#{content},sysdate,#{groupNo})
 		]]>
 	</insert>
 	

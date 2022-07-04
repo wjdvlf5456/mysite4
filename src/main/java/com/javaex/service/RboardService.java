@@ -32,7 +32,37 @@ public class RboardService {
 		int lastNo = rboardDao.getLastIndex();
 		
 		//rownum으로 마지막 숫자 조회 후 그룹넘버추가
-		rboardVo.setGroupNo(lastNo);
+		rboardVo.setGroupNo(lastNo+1);
+		int count = rboardDao.insertNewBoard(rboardVo);
+		
+		return count;
+	};
+	
+	// 답글 작성
+	public int insertReqBoard(RboardVo rboardVo){
+		
+		int no = rboardVo.getNo();
+		
+		//부모 데이터
+		RboardVo rVo = rboardDao.getRboard(no);
+		
+		//부모로부터 1더함
+		rboardVo.setDepth(rVo.getDepth()+1);
+		
+		int dd = rboardVo.getDepth();
+		System.out.println(dd);
+		
+		String str = "";
+		for (int i = dd; i >=0; i++) {
+			str += "\t";
+		}
+		String title = rboardVo.getTitle();
+		
+		rboardVo.setTitle(str+title);
+		
+		rboardVo.setGroupNo(rVo.getGroupNo());
+		rboardVo.setOrderNo(rVo.getOrderNo()+1);
+		
 		int count = rboardDao.insertNewBoard(rboardVo);
 		
 		return count;

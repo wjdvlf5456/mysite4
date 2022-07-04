@@ -41,7 +41,7 @@
 	
 				<div id="board">
 					<div id="read">
-						<form action="" method="get">
+						<form action="${pageContext.request.contextPath}/api/rboard/reqWriteForm" method="get">
 							<!-- 작성자 -->
 							<div class="form-group">
 								<span class="form-text">작성자</span>
@@ -66,6 +66,7 @@
 								<span class="form-value">${rboardVo.title }</span>
 							</div>
 						
+							<input type="hidden" name="no" value="${rboardVo.no}">
 							<!-- 내용 -->
 							<div id="txt-content">
 								<span class="form-value" >
@@ -73,7 +74,7 @@
 								</span>
 							</div>
 							<c:if test="${authUser != null}">
-							<a id="btn_modify" href="${pageContext.request.contextPath}/api/rboard/writeFrom/${rboardVo.no}">답글 달기</a>
+							<a id="btn_modify" href="${pageContext.request.contextPath}/api/rboard/reqWriteForm">답글 달기</a>
 							</c:if>
 							<c:if test="${authUser.no == rboardVo.userNo}">
 							<a id="btn_modify" href="${pageContext.request.contextPath}/api/rboard/modifyForm/${rboardVo.no}">수정</a>
