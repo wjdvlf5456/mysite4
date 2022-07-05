@@ -84,7 +84,7 @@
 								<c:forEach begin="${pMap.startPageBtnNo}" end="${pMap.endPageBtnNo}" step="1" var="page">
 									
 									<c:choose>
-										<c:when test="${param.crtPage == page}">
+										<c:when test="${param.crtPage == page && param.keyword== pMap.keyword}">
 										<li class="active"><a href="${pageContext.request.contextPath}/board/list?crtPage=${page}&keyword=${pMap.keyword}">${page}</a></li>
 										</c:when>
 										<c:otherwise >
