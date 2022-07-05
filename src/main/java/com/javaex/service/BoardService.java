@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.w3c.dom.ls.LSException;
 
 import com.javaex.dao.BoardDao;
 import com.javaex.vo.BoardVo;
@@ -19,12 +20,14 @@ public class BoardService {
 	public List<BoardVo> getBoardList(String keyword,int crtPage){
 		System.out.println("현재 페이지: "+crtPage + "페이지");
 		
-		if (crtPage<1) {
-			crtPage=1;
-		}
-		
 		//페이지 당 게시글 개수
 		int listCnt = 10;
+		
+		if (crtPage<1) {
+			crtPage=1;
+		};
+		
+		System.out.println(crtPage);
 		
 		int startRnum = (crtPage-1)*listCnt +1;
 		int endRnum = crtPage*listCnt;

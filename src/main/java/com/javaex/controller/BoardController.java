@@ -23,10 +23,19 @@ public class BoardController {
 
 	// =================================== 게시판(메인) ===================================
 	@RequestMapping(value = "/list", method = { RequestMethod.GET, RequestMethod.POST })
-	public String list(Model model, @RequestParam(required = false) String keyword, @RequestParam("crtPage")int crtPage) {
+	public String list(Model model, @RequestParam(required = false) String keyword, @RequestParam(required = false)String crtPage) {
 		System.out.println("BoardController > list");
 
-		List<BoardVo> boardList = boardService.getBoardList(keyword,crtPage);
+		int currenttPage = 1;
+		//required = false는 null값을 가져오는 건데 int형을 null로 비교할 수 없어 따로 선언해주었다.
+		if (crtPage==null) {
+			currenttPage=1;
+		} else {
+			currenttPage = Integer.parseInt(crtPage);
+
+		}
+		
+		List<BoardVo> boardList = boardService.getBoardList(keyword,currenttPage);
 		System.out.println(boardList.toString());
 
 		model.addAttribute("boardList", boardList);

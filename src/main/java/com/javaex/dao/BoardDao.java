@@ -25,10 +25,15 @@ public class BoardDao {
 		map.put("endRnum", endRnum);
 		System.out.println(map.toString());
 		
-		
-		
 		List<BoardVo> boardList = sqlSession.selectList("board.selectList",map);
 		return boardList;
+	}
+	
+	public int getLastIndex() {
+		int lastNo = sqlSession.selectOne("board.getLastIndex");
+		
+		return lastNo;
+		
 	}
 	
 	// ============================= 선택한 board 정보 가져오기 =============================
