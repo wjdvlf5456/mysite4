@@ -29,10 +29,10 @@ public class BoardDao {
 		return boardList;
 	}
 	
-	public int selectTotalCnt() {
+	public int selectTotalCnt(String keyword) {
 		System.out.println("BoardDao > selectTotalCnt()");
 		
-		int totalCnt = sqlSession.selectOne("board.getTotalCnt");
+		int totalCnt = sqlSession.selectOne("board.getTotalCnt",keyword);
 		
 		return totalCnt;
 		

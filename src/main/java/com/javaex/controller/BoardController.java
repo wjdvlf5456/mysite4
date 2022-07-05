@@ -35,10 +35,16 @@ public class BoardController {
 			currentPage = Integer.parseInt(crtPage);
 
 		}
+		String key = "";
+		if (keyword!=null) {
+			key += keyword;
+		} else {
+			key = "";
+		}
 		
 		
 		
-		Map<String,Object> pMap = boardService.getBoardList(keyword,currentPage);
+		Map<String,Object> pMap = boardService.getBoardList(key,currentPage);
 		System.out.println(pMap.toString());
 		
 		model.addAttribute("pMap", pMap);

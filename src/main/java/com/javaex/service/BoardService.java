@@ -1,6 +1,7 @@
 package com.javaex.service;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -23,7 +24,8 @@ public class BoardService {
 		int listCnt = 10;
 		
 		// 페이지의 총 게시글 개수
-		int totalCnt = boardDao.selectTotalCnt();
+		int totalCnt = boardDao.selectTotalCnt(keyword);
+		System.out.println("totalCnt: " + totalCnt);
 		
 		if (crtPage<1) {
 			crtPage=1;
@@ -79,6 +81,7 @@ public class BoardService {
 		
 		List<BoardVo> boardList = boardDao.getBoardList(keyword, startRnum, endRnum);
 		pMap.put("boardList", boardList);
+		pMap.put("keyword",keyword);
 		pMap.put("prev", prev);
 		pMap.put("startPageBtnNo", startPageBtnNo);
 		pMap.put("pageBtnCount",pageBtnCount);
@@ -103,7 +106,19 @@ public class BoardService {
 	public int boardInsert(BoardVo boardVo) {
 		
 		
-		return boardDao.boardInsert(boardVo);
+		int count = 0;
+		
+		
+		for (int i = 0; i < 127; i++) {
+			
+			boardVo.setTitle(i + "번째 게시판입니다.");
+			boardVo.setContent(i + "번째 content입니다.");
+			count += boardDao.boardInsert(boardVo);
+			
+		}
+				
+		
+		return count;
 	}
 	
 	public int boardDelete(int no) {
