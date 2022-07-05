@@ -13,45 +13,45 @@
 	</resultMap>
 
 	<!-- 목록 -->
-	<select id="selectList" parameterType="String" resultMap="resultMapBoardVo">
+	<select id="selectList" parameterType="hashmap" resultMap="resultMapBoardVo">
 	<![CDATA[
-		select ort.rn, 
-        ort.no, 
-        ort.title, 
-        ort.content, 
-        ort.hit, 
-        ort.regDate, 
-        ort.userNo, 
-        ort.userName 
+		select  ort.rn, 
+		        ort.no, 
+		        ort.title, 
+		        ort.content, 
+		        ort.hit, 
+		        ort.regDate, 
+		        ort.userNo, 
+		        ort.userName 
 		from(select rownum rn, 
 		            ot.no, 
 		            ot.title, 
-		            ot.content, 
+		            ot.content, 	
 		            ot.hit, 
 		            ot.regDate, 
 		            ot.userNo, 
 		            ot.userName 
-		     from (select   b.no, 
-		                	b.title, 
-		             	 b.content, 
-		                b.hit, 
-		                to_char(b.reg_date,'yy-mm-dd hh:mi') regDate, 
-		                s.name userName, 
-		                b.user_no userNo 
+		      from (select  b.no, 
+		     				b.title, 
+		     				b.content, 
+		     				b.hit, 
+		     				to_char(b.reg_date,'yy-mm-dd hh:mi') regDate, 
+		     				s.name userName, 
+		     				b.user_no userNo 
 			        from users s 
 			        left outer join board b on b.user_no = s.no 
 			        where not b.no is null 
 	]]>
-			        <if test="value !=null"> 
+			        <if test="keyword !=null"> 
 	<![CDATA[
-					and b.title like '%${value}%' 
+					and b.title like '%'|| #{keyword} || '%' 
 	]]>
 					</if> 
 	<![CDATA[
 					order by b.no desc)ot 
 		        )ort 
-				where rn >= 1 
-				and rn <= 10
+				where rn >= #{startRnum} 
+				and rn <= #{endRnum}
 	]]>
 	</select>
 

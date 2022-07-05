@@ -23,10 +23,10 @@ public class BoardController {
 
 	// =================================== 게시판(메인) ===================================
 	@RequestMapping(value = "/list", method = { RequestMethod.GET, RequestMethod.POST })
-	public String list(Model model, @RequestParam(required = false) String keyword) {
+	public String list(Model model, @RequestParam(required = false) String keyword, @RequestParam("crtPage")int crtPage) {
 		System.out.println("BoardController > list");
 
-		List<BoardVo> boardList = boardService.getBoardList(keyword);
+		List<BoardVo> boardList = boardService.getBoardList(keyword,crtPage);
 		System.out.println(boardList.toString());
 
 		model.addAttribute("boardList", boardList);
