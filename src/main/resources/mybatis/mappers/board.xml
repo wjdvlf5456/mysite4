@@ -14,20 +14,45 @@
 
 	<!-- 목록 -->
 	<select id="selectList" parameterType="String" resultMap="resultMapBoardVo">
-		select 	b.no, 
-				b.title, 
-				b.content, 
-				b.hit, 
-				to_char(b.reg_date,'yy-mm-dd hh:mi') regDate, 
-				s.name, 
-				b.user_no 
-		from users s 
-		left outer join board b on b.user_no = s.no 
-		where not b.no is null 
-		<if test="value !=null"> 
-		and b.title like '%${value}%' 
-		</if> 
-		order by b.no desc
+	<![CDATA[
+		select ort.rn, 
+        ort.no, 
+        ort.title, 
+        ort.content, 
+        ort.hit, 
+        ort.regDate, 
+        ort.userNo, 
+        ort.userName 
+		from(select rownum rn, 
+		            ot.no, 
+		            ot.title, 
+		            ot.content, 
+		            ot.hit, 
+		            ot.regDate, 
+		            ot.userNo, 
+		            ot.userName 
+		     from (select   b.no, 
+		                	b.title, 
+		             	 b.content, 
+		                b.hit, 
+		                to_char(b.reg_date,'yy-mm-dd hh:mi') regDate, 
+		                s.name userName, 
+		                b.user_no userNo 
+			        from users s 
+			        left outer join board b on b.user_no = s.no 
+			        where not b.no is null 
+	]]>
+			        <if test="value !=null"> 
+	<![CDATA[
+					and b.title like '%${value}%' 
+	]]>
+					</if> 
+	<![CDATA[
+					order by b.no desc)ot 
+		        )ort 
+				where rn >= 1 
+				and rn <= 10
+	]]>
 	</select>
 
 
@@ -38,7 +63,7 @@
 				b.no, 
 				b.hit, 
 			 	to_char(b.reg_date, 'yy-mm-dd hh:mi') regDate,  
-			  	b.title,  
+				b.title,  
 			  	b.content,  
 			  	b.user_no  
 		from users s 
@@ -82,5 +107,4 @@
 			where no = #{no}
 		]]>
 	</update>
-
 </mapper>
