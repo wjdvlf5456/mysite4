@@ -18,16 +18,38 @@ public class BoardService {
 	
 	// board 리스트
 	public List<BoardVo> getBoardList(String keyword,int crtPage){
-		System.out.println("현재 페이지: "+crtPage + "페이지");
 		
 		//페이지 당 게시글 개수
 		int listCnt = 10;
 		
+		int totalCnt = boardDao.selectTotalCnt();
 		if (crtPage<1) {
 			crtPage=1;
-		};
+		}else if(crtPage>(totalCnt/listCnt)+1){
+			crtPage = (totalCnt/listCnt) +1;
+		}
 		
 		System.out.println(crtPage);
+		
+		//페이지당 버튼 갯수
+		int pageBtnCount = 5;
+		
+		//마지막 버튼 번호
+		int endPageBtnNo = (int)Math.ceil(crtPage/(double)pageBtnCount)*pageBtnCount;
+		
+		//시작 버튼 번호
+		int startPageBtnNo = endPageBtnNo - pageBtnCount+1;
+		
+		
+		if (endPageBtnNo > totalCnt/listCnt + 1) {
+			endPageBtnNo = totalCnt/listCnt +1;
+		}
+		
+		System.out.println("시작번호: " + startPageBtnNo);
+		System.out.println("현재페이지: " + crtPage);
+		System.out.println("끝번호: " + endPageBtnNo);
+		
+		
 		
 		int startRnum = (crtPage-1)*listCnt +1;
 		int endRnum = crtPage*listCnt;

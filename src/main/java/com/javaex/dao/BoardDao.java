@@ -29,10 +29,12 @@ public class BoardDao {
 		return boardList;
 	}
 	
-	public int getLastIndex() {
-		int lastNo = sqlSession.selectOne("board.getLastIndex");
+	public int selectTotalCnt() {
+		System.out.println("BoardDao > selectTotalCnt()");
 		
-		return lastNo;
+		int totalCnt = sqlSession.selectOne("board.getTotalCnt");
+		
+		return totalCnt;
 		
 	}
 	

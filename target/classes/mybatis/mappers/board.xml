@@ -71,6 +71,15 @@
 		where b.no = #{no} 
 	]]>
 	</select>
+	
+	<select id="getTotalCnt" resultType="int">
+		<![CDATA[
+			select count(*) count 
+			from board b 
+			left outer join users u 
+			on b.user_no = u.no
+		]]>
+	</select>
 
 	<!-- 게시글 조회시 조회수 1증가 -->
 	<update id="getHit" parameterType="int">
