@@ -1,7 +1,6 @@
 package com.javaex.service;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -80,6 +79,8 @@ public class BoardService {
 		Map<String, Object> pMap = new HashMap<String, Object>();
 		
 		List<BoardVo> boardList = boardDao.getBoardList(keyword, startRnum, endRnum);
+		
+		//맵에 담아서 데이터 전송
 		pMap.put("boardList", boardList);
 		pMap.put("keyword",keyword);
 		pMap.put("prev", prev);

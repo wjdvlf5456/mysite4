@@ -33,16 +33,15 @@ public class BoardController {
 			currentPage=1;
 		} else {
 			currentPage = Integer.parseInt(crtPage);
-
 		}
+		
+		//검색시 활용
 		String key = "";
 		if (keyword!=null) {
 			key += keyword;
 		} else {
 			key = "";
 		}
-		
-		
 		
 		Map<String,Object> pMap = boardService.getBoardList(key,currentPage);
 		System.out.println(pMap.toString());

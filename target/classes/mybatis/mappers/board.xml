@@ -72,7 +72,8 @@
 		where b.no = #{no} 
 	]]>
 	</select>
-
+	
+	<!-- 게시글 전체 개수 조회(또는 검색 수 만큼) -->
 	<select id="getTotalCnt" parameterType="String" resultType="int">
 			select count(*) count 
 			from board 

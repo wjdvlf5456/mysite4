@@ -29,13 +29,12 @@ public class BoardDao {
 		return boardList;
 	}
 	
+	// ============================= 게시판 글 총 개수 가져오기 =============================
 	public int selectTotalCnt(String keyword) {
 		System.out.println("BoardDao > selectTotalCnt()");
-		
 		int totalCnt = sqlSession.selectOne("board.getTotalCnt",keyword);
 		
 		return totalCnt;
-		
 	}
 	
 	// ============================= 선택한 board 정보 가져오기 =============================
