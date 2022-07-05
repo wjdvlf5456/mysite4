@@ -105,20 +105,7 @@ public class BoardService {
 	
 	public int boardInsert(BoardVo boardVo) {
 		
-		
-		int count = 0;
-		
-		
-		for (int i = 0; i < 127; i++) {
-			
-			boardVo.setTitle(i + "번째 게시판입니다.");
-			boardVo.setContent(i + "번째 content입니다.");
-			count += boardDao.boardInsert(boardVo);
-			
-		}
-				
-		
-		return count;
+		return boardDao.boardInsert(boardVo);
 	}
 	
 	public int boardDelete(int no) {
