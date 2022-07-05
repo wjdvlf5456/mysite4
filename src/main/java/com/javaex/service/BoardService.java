@@ -19,6 +19,10 @@ public class BoardService {
 	public List<BoardVo> getBoardList(String keyword,int crtPage){
 		System.out.println("현재 페이지: "+crtPage + "페이지");
 		
+		if (crtPage<1) {
+			crtPage=1;
+		}
+		
 		//페이지 당 게시글 개수
 		int listCnt = 10;
 		
