@@ -28,6 +28,7 @@ public class RboardController {
 
 		List<RboardVo> rboardList = rboardService.rboardList(keyword);
 		System.out.println(rboardList.toString());
+		System.out.println("");
 
 		model.addAttribute("rboardList", rboardList);
 
@@ -39,6 +40,7 @@ public class RboardController {
 	@RequestMapping(value = "/writeForm", method = { RequestMethod.GET, RequestMethod.POST })
 	public String writeForm() {
 		System.out.println("RboardController > writeForm");
+		System.out.println("");
 
 		// writeForm.jsp로 포워딩
 		return "rboard/writeForm";
@@ -69,7 +71,7 @@ public class RboardController {
 			int count = rboardService.insertReqBoard(rboardVo);
 			System.out.println("답글");
 		}
-		
+		System.out.println("");
 
 		// list.jsp로 리다이렉트
 		return "redirect:/rboard/list";

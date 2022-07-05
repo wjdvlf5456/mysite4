@@ -27,7 +27,7 @@
 		<if test="value !=null"> 
 		and b.title like '%${value}%' 
 		</if> 
-		order by b.no asc
+		order by b.no desc
 	</select>
 
 

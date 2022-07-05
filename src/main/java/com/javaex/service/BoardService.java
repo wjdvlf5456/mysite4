@@ -32,6 +32,8 @@ public class BoardService {
 	}
 	
 	public int boardInsert(BoardVo boardVo) {
+		
+		
 		return boardDao.boardInsert(boardVo);
 	}
 	
