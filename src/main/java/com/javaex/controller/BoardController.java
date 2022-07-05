@@ -26,16 +26,16 @@ public class BoardController {
 	public String list(Model model, @RequestParam(required = false) String keyword, @RequestParam(required = false)String crtPage) {
 		System.out.println("BoardController > list");
 
-		int currenttPage = 1;
+		int currentPage = 1;
 		//required = false는 null값을 가져오는 건데 int형을 null로 비교할 수 없어 따로 선언해주었다.
 		if (crtPage==null) {
-			currenttPage=1;
+			currentPage=1;
 		} else {
-			currenttPage = Integer.parseInt(crtPage);
+			currentPage = Integer.parseInt(crtPage);
 
 		}
 		
-		List<BoardVo> boardList = boardService.getBoardList(keyword,currenttPage);
+		List<BoardVo> boardList = boardService.getBoardList(keyword,currentPage);
 		System.out.println(boardList.toString());
 
 		model.addAttribute("boardList", boardList);
