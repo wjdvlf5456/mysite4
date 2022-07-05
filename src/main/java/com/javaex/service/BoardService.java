@@ -1,11 +1,11 @@
 package com.javaex.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.w3c.dom.ls.LSException;
 
 import com.javaex.dao.BoardDao;
 import com.javaex.vo.BoardVo;
@@ -17,7 +17,7 @@ public class BoardService {
 	private BoardDao boardDao;
 	
 	// board 리스트
-	public List<BoardVo> getBoardList(String keyword,int crtPage){
+	public Map<String,Object> getBoardList(String keyword,int crtPage){
 		
 		// ================= 1 페이지 당 게시글 개수 =================
 		int listCnt = 10;
@@ -39,6 +39,7 @@ public class BoardService {
 		int pageBtnCount = 5;
 		
 		//마지막 버튼 번호
+		//double형을 int형으로 바꿔주면 올림이 되는 것을 이용
 		int endPageBtnNo = (int)Math.ceil(crtPage/(double)pageBtnCount)*pageBtnCount;
 		
 		//시작 버튼 번호
@@ -71,11 +72,20 @@ public class BoardService {
 		System.out.println("끝번호: " + endPageBtnNo);
 		
 		
-		
 		int startRnum = (crtPage-1)*listCnt +1;
 		int endRnum = crtPage*listCnt;
 		
-		return boardDao.getBoardList(keyword,startRnum,endRnum);
+		Map<String, Object> pMap = new HashMap<String, Object>();
+		
+		List<BoardVo> boardList = boardDao.getBoardList(keyword, startRnum, endRnum);
+		pMap.put("boardList", boardList);
+		pMap.put("prev", prev);
+		pMap.put("startPageBtnNo", startPageBtnNo);
+		pMap.put("pageBtnCount",pageBtnCount);
+		pMap.put("endPageBtnNo", endPageBtnNo);
+		pMap.put("next", next);
+		
+		return pMap;
 	}
 	
 	public BoardVo getBoard(int no) {

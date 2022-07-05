@@ -44,7 +44,6 @@
 						<form action="${pageContext.request.contextPath}/board/list" method="get">
 							<div class="form-group text-right">
 								<input type="text" name="keyword" value="">
-								<input type="hidden" name="crtPage" value="1">
 								<button type="submit" id=btn_search>검색</button>
 							</div>
 						</form>
@@ -59,7 +58,7 @@
 									<th>관리</th>
 								</tr>
 							</thead>
-							<c:forEach items="${boardList}" var="boardVo" varStatus="status">
+							<c:forEach items="${pMap.boardList}" var="boardVo" varStatus="status">
 							<tbody>
 								<tr>
 									<%-- <td>${status.count }</td> --%>
@@ -78,21 +77,17 @@
 
 						<div id="paging">
 							<ul>
-								<li><a href="">◀</a></li>
-								<li><a href="">1</a></li>
-								<li><a href="">2</a></li>
-								<li><a href="">3</a></li>
-								<li><a href="">4</a></li>
-								<li class="active"><a href="">5</a></li>
-								<li><a href="">6</a></li>
-								<li><a href="">7</a></li>
-								<li><a href="">8</a></li>
-								<li><a href="">9</a></li>
-								<li><a href="">10</a></li>
-								<li><a href="">▶</a></li>
+								<c:if test="${pMap.prev }">
+									<li><a href="${pageContext.request.contextPath}/board/list?crtPage=${pMap.startPageBtnNo-pMap.pageBtnCount}">◀</a></li>
+								</c:if>
+								<c:forEach begin="${pMap.startPageBtnNo}" end="${pMap.endPageBtnNo}" step="1" var="page">
+									<li class="active"><a href="${pageContext.request.contextPath}/board/list?crtPage=${page}">${page}</a></li>
+								</c:forEach>
+								<c:if test="${pMap.next}">
+									<li><a href="${pageContext.request.contextPath}/board/list?crtPage=${pMap.endPageBtnNo+pMap.pageBtnCount}">▶</a></li>
+								</c:if>
 							</ul>
-
-
+							
 							<div class="clear"></div>
 						</div>
 						<c:if test="${authUser!=null }">

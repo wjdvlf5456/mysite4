@@ -1,6 +1,7 @@
 package com.javaex.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,10 +36,12 @@ public class BoardController {
 
 		}
 		
-		List<BoardVo> boardList = boardService.getBoardList(keyword,currentPage);
-		System.out.println(boardList.toString());
-
-		model.addAttribute("boardList", boardList);
+		
+		
+		Map<String,Object> pMap = boardService.getBoardList(keyword,currentPage);
+		System.out.println(pMap.toString());
+		
+		model.addAttribute("pMap", pMap);
 
 		// list.jsp로 포워딩
 		return "board/list";
