@@ -59,8 +59,12 @@ public class GuestBookController {
 	@RequestMapping(value="/delete", method= {RequestMethod.GET,RequestMethod.POST})
 	public String delete(@RequestParam("no") int no, @RequestParam("password") String password) {
 		System.out.println("GuestBookController > delete");
+		GuestBookVo gVo = new GuestBookVo();
+		gVo.setNo(no);
+		gVo.setPassword(password);
+		
 		if (guestBookService.getGuest(no).getPassword().equals(password)) {
-			//guestBookService.guestDelete(no);
+			guestBookService.guestDelete(gVo);
 		} else {
 			System.out.println("비밀번호가 틀립니다.");
 		}
